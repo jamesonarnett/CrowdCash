@@ -11,10 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
-        with:
-          php-version: "8.1"
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.github', '.env');"
       - name: Install Dependencies
@@ -27,6 +24,9 @@ jobs:
         run: |
           mkdir -p database
           touch database/database.sqlite
+      - name: Build Frontend Assets with Vite
+        run: npm install && npm run build
+        working-directory: resources/js
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         env:
           DB_CONNECTION: sqlite
