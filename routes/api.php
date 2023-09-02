@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,5 +39,10 @@ Route::delete('/post/{id}', [PostController::class, 'destroy']);
 
 
 /**
- * -- routes
+ * User routes
  */
+// Route::get('/user', [UserController::class, 'index']);
+
+// Route::post('/user', [UserController::class, 'store']);
+
+Route::get('/user/{id}', [UserController::class, 'show']);
