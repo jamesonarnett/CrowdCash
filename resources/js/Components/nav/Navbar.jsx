@@ -57,6 +57,11 @@ const Navbar = ({ user }) => {
                                 </Dropdown.Trigger>
 
                                 <Dropdown.Content>
+                                    <Dropdown.Link
+                                        href={route("profile.posts")}
+                                    >
+                                        Your Posts
+                                    </Dropdown.Link>
                                     <Dropdown.Link href={route("profile.edit")}>
                                         Profile
                                     </Dropdown.Link>
@@ -76,7 +81,7 @@ const Navbar = ({ user }) => {
                         <button
                             onClick={() =>
                                 setShowingNavigationDropdown(
-                                    (previousState) => !previousState
+                                    (previousState) => !previousState,
                                 )
                             }
                             className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
@@ -132,15 +137,15 @@ const Navbar = ({ user }) => {
 
                 <div className="pt-4 pb-1 border-t border-gray-200">
                     <div className="px-4">
-                        <div className="font-medium text-base text-gray-800">
+                        <div className="font-medium text-base text-gray-800 border-b-2 border-gray-100">
                             {user.name}
-                        </div>
-                        <div className="font-medium text-sm text-gray-500">
-                            {user.email}
                         </div>
                     </div>
 
                     <div className="mt-3 space-y-1">
+                        <ResponsiveNavLink href={route("profile.posts")}>
+                            Your Posts
+                        </ResponsiveNavLink>
                         <ResponsiveNavLink href={route("profile.edit")}>
                             Profile
                         </ResponsiveNavLink>

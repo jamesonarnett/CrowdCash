@@ -60,4 +60,17 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+
+    /**
+     * Display the user's posts.
+     */
+    public function posts(Request $request): Response
+    {
+        // maybe paginate later ->paginate(10)->withQueryString()
+
+        return Inertia::render('Profile/Posts', [
+            'posts' => $request->user()->posts()->get(),
+        ]);
+    }
 }
