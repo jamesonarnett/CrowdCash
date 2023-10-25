@@ -34,6 +34,7 @@ export default function Post({ auth }) {
                         icon: "👍",
                     });
 
+                    // lol make em wait a bit - rEaCtiViTy
                     setTimeout(() => {
                         window.location.href = "/dashboard";
                     }, 2000);
@@ -109,7 +110,6 @@ export default function Post({ auth }) {
                                                     value={formData.content}
                                                     onChange={handleChange}
                                                     required
-                                                    autofocus
                                                 />
 
                                                 <button

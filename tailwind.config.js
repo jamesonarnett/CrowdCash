@@ -15,7 +15,7 @@ export default {
             colors: {
                 primary: "#66C7F4",
                 secondary: "#C1CAD6",
-                tertiary: "#6C6EA0",
+                tertiary: "#6C8AE3",
                 quaternary: "#FF1053",
                 myWhite: "#FFFFFF", // meh, maybe not
             },
@@ -27,6 +27,8 @@ export default {
                     "linear-gradient(180deg, #FFFFFF 30%, #66C7F4 100%)",
                 "gradient-primary-flip":
                     "linear-gradient(0deg, #FFFFFF 0%, #66C7F4 100%)",
+                "gradient-landing":
+                    "linear-gradient(180deg, #FFFFFF 0%, #6C6EA0 100%)",
             }),
         },
     },

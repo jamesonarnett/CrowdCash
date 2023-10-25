@@ -29,9 +29,14 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/post', function () {
+Route::get('/create-post', function () {
     return Inertia::render('Post');
 })->middleware(['auth', 'verified'])->name('post');
+
+// make a route for post/slug
+Route::get('/post/{slug}', function () {
+    return Inertia::render('UserPost');
+})->middleware(['auth', 'verified'])->name('post.slug');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

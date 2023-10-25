@@ -1,39 +1,104 @@
 import { Link, Head } from "@inertiajs/react";
+import ApplicationLogo from "@/Components/ApplicationLogo";
 
 export default function Welcome({ auth }) {
     return (
         <>
-            <Head title="Welcome" />
-            <div className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
-                <div className="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
-                    {auth.user ? (
-                        <Link
-                            href={route("dashboard")}
-                            className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                        >
-                            Dashboard
-                        </Link>
-                    ) : (
-                        <>
-                            <Link
-                                href={route("login")}
-                                className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                            >
-                                Log in
-                            </Link>
+            <Head title="Vote" />
+            <div className="min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+                <div className="p-6 text-right bg-myWhite flex items-center justify-between">
+                    <div className="flex flex-col md:flex-row items-center w-full justify-between">
+                        <div className="flex items-center">
+                            <ApplicationLogo />
+                        </div>
+                        <div className="flex my-5 md:m-0 text-xl">
+                            {auth.user ? (
+                                <Link
+                                    href={route("dashboard")}
+                                    className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                                >
+                                    Dashboard
+                                </Link>
+                            ) : (
+                                <>
+                                    <Link
+                                        href={route("login")}
+                                        className="font-semibold text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-black focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                                    >
+                                        Log in
+                                    </Link>
 
-                            <Link
-                                href={route("register")}
-                                className="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                            >
-                                Register
-                            </Link>
-                        </>
-                    )}
+                                    <Link
+                                        href={route("register")}
+                                        className="ml-4 font-semibold text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-black focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                                    >
+                                        Register
+                                    </Link>
+                                </>
+                            )}
+                        </div>
+                    </div>
                 </div>
 
-                <div className="max-w-7xl mx-auto p-6 lg:p-8">
-                    <p className="text-white">Hello World!</p>
+                <div className="bg-gradient-landing min-h-screen flex flex-col">
+                    <section className="p-8 text-center text-black">
+                        <h1 className="text-4xl font-extrabold">
+                            Your Platform for Making a Difference
+                        </h1>
+                        <p className="mt-4 text-xl">
+                            Join our community and help those in need by casting
+                            your votes.
+                        </p>
+                        <a
+                            href={route("register")}
+                            className="mt-6 bg-primary text-black px-6 py-3 text-xl rounded-full 
+                            inline-block hover:bg-myWhite hover:text-black transition duration-300 ease-in-out
+                            hover:shadow-lg"
+                        >
+                            Get Started
+                        </a>
+                    </section>
+                    <section className="p-8 text-black">
+                        <h2 className="text-2xl font-semibold mb-4">
+                            How It Works
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div className="p-4 border border-black rounded-lg">
+                                {/* Step 1 content */}
+                            </div>
+                            <div className="p-4 border border-black rounded-lg">
+                                {/* Step 2 content */}
+                            </div>
+                            <div className="p-4 border border-black rounded-lg">
+                                {/* Step 3 content */}
+                            </div>
+                        </div>
+                    </section>
+                    <section className="p-8 text-black">
+                        <h2 className="text-2xl font-semibold mb-4">
+                            Our Mission
+                        </h2>
+                        <p>
+                            We believe in the power of people helping people.
+                            Our platform enables individuals to receive support
+                            from a caring community.
+                        </p>
+                    </section>
+                    <footer className="p-4 text-center text-black">
+                        <a
+                            href="https://ajameson.dev"
+                            className="font-bold"
+                            target="_blank"
+                        >
+                            <p>
+                                Made with{" "}
+                                <span role="img" aria-label="heart">
+                                    ❤️
+                                </span>{" "}
+                                by the "Team"
+                            </p>
+                        </a>
+                    </footer>
                 </div>
             </div>
 

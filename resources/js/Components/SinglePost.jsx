@@ -1,22 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
 
-const SinglePost = ({ post }) => {
-    const [user, setUser] = useState("");
-
-    const getUser = async () => {
-        try {
-            axios.get("/api/user/" + post.user_id).then((response) => {
-                setUser(response.data.user);
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    useEffect(() => {
-        getUser();
-    }, []);
+const SinglePost = ({ post, user }) => {
+    console.log(user);
 
     return (
         <div
@@ -25,11 +11,11 @@ const SinglePost = ({ post }) => {
         >
             {post && (
                 <div className="p-2 rounded-md">
+                    {user?.name}
+                    <br />
                     {post.title}
                     <br />
                     {post.content}
-                    <br />
-                    {user?.name}
                 </div>
             )}
         </div>

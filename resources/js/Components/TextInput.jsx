@@ -5,7 +5,7 @@ export default forwardRef(function TextInput(
         type = "text",
         className = "",
         isFocused = false,
-        autofocus = true,
+        autofocus = false,
         ...props
     },
     ref,
@@ -27,7 +27,7 @@ export default forwardRef(function TextInput(
                 className
             }
             ref={input}
-            autofocus={autofocus}
+            autoFocus={autofocus}
         />
     );
 });

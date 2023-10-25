@@ -13,12 +13,17 @@ export default function Dashboard({ auth }) {
     const [posts, setPosts] = useState([]);
     const [error, setError] = useState(false);
     const [errMessage, setErrMessage] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     const getPosts = () => {
+        setIsLoading(true);
+
         try {
             axios.get("/api/post").then((response) => {
                 setPosts(response.data.posts);
             });
+
+            setIsLoading(false);
         } catch (error) {
             setError(true);
             setErrMessage(error.message);
@@ -54,9 +59,16 @@ export default function Dashboard({ auth }) {
                                 </div>
                             </div>
 
+                            {isLoading && (
+                                <LoadingSpinner text="Loading posts!" />
+                            )}
                             {posts.length > 0 ? (
                                 posts.map((post) => (
-                                    <SinglePost key={post.id} post={post} />
+                                    <SinglePost
+                                        key={post.id}
+                                        post={post}
+                                        user={auth.user}
+                                    />
                                 ))
                             ) : (
                                 <div className="flex flex-col md:flex-row w-100 justify-center my-10">

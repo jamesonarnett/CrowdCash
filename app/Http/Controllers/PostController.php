@@ -11,13 +11,14 @@ class PostController extends Controller
     {
         // if auth, return all posts
         if(auth()->user()) {
+            // return all posts ordered by created_at
             return response()->json([
-                'posts' => Post::all()
+                'posts' => Post::orderBy('created_at', 'DESC')->get()
             ]);
         } else {
             // if not auth, return only published posts
             return response()->json([
-                'posts' => Post::where('is_published', true)->get()
+                'posts' => Post::orderBy('created_at', 'DESC')->where('is_published', 1)->get()
             ]);
         }
     }

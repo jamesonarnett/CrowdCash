@@ -17,7 +17,7 @@ const LoadingSpinner = ({ width, height, color, text = "Loading..." }) => {
                     style={heartStyle}
                     className="transform origin-center"
                 />
-                <p className="text-center mt-4">{text}.</p>
+                <p className="text-center mt-4">{text}</p>
             </div>
         </div>
     );
