@@ -1,7 +1,9 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { useState } from "react";
-import { Head, router } from "@inertiajs/react";
+import { Head } from "@inertiajs/react";
 import ErrorText from "@/Components/error/ErrorText";
+import LoadingSpinner from "@/Components/LoadingSpinner";
+import TextInput from "@/Components/TextInput";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -13,6 +15,7 @@ export default function Post({ auth }) {
         title: "",
         content: "",
     });
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -21,20 +24,25 @@ export default function Post({ auth }) {
 
     const submit = (e) => {
         e.preventDefault();
+        setIsLoading(true);
 
         axios
             .post("/api/post", formData)
             .then((response) => {
                 if (response.data.success) {
-                    console.log("success", response.data);
                     toast("Post created successfully!", {
                         icon: "👍",
                     });
+
+                    setTimeout(() => {
+                        window.location.href = "/dashboard";
+                    }, 2000);
                 }
             })
             .catch((error) => {
                 setError(true);
                 setErrMessage("An error occurred while posting your data.");
+                setIsLoading(false);
                 console.error(error);
             });
     };
@@ -57,51 +65,63 @@ export default function Post({ auth }) {
                     <div className="py-4">
                         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                             <div className="flex flex-col w-100 justify-center my-10">
-                                <h1 className="text-xl font-semibold mt-4">
+                                <h1 className="text-xl font-semibold mt-4 text-center">
                                     From your heart to theirs, share your
-                                    experiences with the world.
+                                    experiences with the world and find the
+                                    assistance you need!
                                 </h1>
-                                <p className="text-lg mt-0 pt-0">
-                                    Find the assistance you need!{" "}
-                                </p>
 
                                 <div className="flex justify-center">
-                                    <form className="w-[85%]" onSubmit={submit}>
-                                        <div className="flex flex-col">
-                                            <label htmlFor="title">Title</label>
-                                            <input
-                                                id="title"
-                                                type="text"
-                                                name="title"
-                                                value={formData.title}
-                                                onChange={handleChange}
-                                                required
-                                                autoFocus
-                                                autoComplete="title"
-                                            />
+                                    {isLoading ? (
+                                        <LoadingSpinner text="Saving!" />
+                                    ) : (
+                                        <form
+                                            className="w-[85%]"
+                                            onSubmit={submit}
+                                        >
+                                            <div className="flex flex-col">
+                                                <label
+                                                    className="mt-6"
+                                                    htmlFor="title"
+                                                >
+                                                    Title
+                                                </label>
+                                                <TextInput
+                                                    id="title"
+                                                    type="text"
+                                                    name="title"
+                                                    value={formData.title}
+                                                    onChange={handleChange}
+                                                    required
+                                                    autofocus
+                                                />
 
-                                            <label htmlFor="content">
-                                                content
-                                            </label>
-                                            <input
-                                                id="content"
-                                                type="text"
-                                                name="content"
-                                                value={formData.content}
-                                                onChange={handleChange}
-                                                required
-                                                autoComplete="content"
-                                            />
+                                                <label
+                                                    className="mt-3"
+                                                    htmlFor="content"
+                                                >
+                                                    Content
+                                                </label>
+                                                <TextInput
+                                                    id="content"
+                                                    type="text"
+                                                    name="content"
+                                                    value={formData.content}
+                                                    onChange={handleChange}
+                                                    required
+                                                    autofocus
+                                                />
 
-                                            <button
-                                                type="submit"
-                                                className="bg-primary text-black hover:bg-secondary py-2 px-4 rounded
-                                                shadow-md m-2 transition-all duration-200 ease-in-out hover:shadow-lg"
-                                            >
-                                                Post
-                                            </button>
-                                        </div>
-                                    </form>
+                                                <button
+                                                    type="submit"
+                                                    className="bg-primary text-black hover:bg-white py-2 px-4 rounded my-5
+                                                shadow-md transition-all duration-200 ease-in-out hover:shadow-lg max-w-[40%] min-w-[200px]  mx-auto"
+                                                >
+                                                    Post
+                                                </button>
+                                            </div>
+                                        </form>
+                                    )}
                                 </div>
                             </div>
                         </div>

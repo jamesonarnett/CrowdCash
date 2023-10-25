@@ -1,7 +1,7 @@
 import React from "react";
 import NavLink from "./NavLink";
 
-function PostButton({ text }) {
+const PostButton = ({ text }) => {
     return (
         <button
             className="bg-primary text-black hover:bg-secondary py-2 px-4 rounded
@@ -17,6 +17,6 @@ function PostButton({ text }) {
             </NavLink>
         </button>
     );
-}
+};
 
 export default PostButton;

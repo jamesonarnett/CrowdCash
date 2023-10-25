@@ -7,6 +7,7 @@ import PostButton from "@/Components/PostButton";
 import ErrorText from "@/Components/error/ErrorText";
 import Toast from "@/Components/toast/Toast";
 import toast from "react-hot-toast";
+import LoadingSpinner from "@/Components/LoadingSpinner";
 
 export default function Dashboard({ auth }) {
     const [posts, setPosts] = useState([]);
@@ -43,6 +44,7 @@ export default function Dashboard({ auth }) {
                 >
                     <Head title="Dashboard" />
                     <Toast />
+
                     <div className="py-4">
                         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                             <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">

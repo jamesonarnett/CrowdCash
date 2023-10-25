@@ -17,6 +17,7 @@ export default {
                 secondary: "#C1CAD6",
                 tertiary: "#6C6EA0",
                 quaternary: "#FF1053",
+                myWhite: "#FFFFFF", // meh, maybe not
             },
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
