@@ -19,9 +19,12 @@ const SinglePost = ({ post }) => {
     }, []);
 
     return (
-        <div className="p-3 bg-slate-200 my-5 rounded-md">
+        <div
+            className="border-black border-2 p-3 bg-white my-5 rounded-md 
+         shadow-lg m-sm-1 mx-2 md:mx-0"
+        >
             {post && (
-                <div className="bg-slate-300 p-2 rounded-md">
+                <div className="p-2 rounded-md">
                     {post.title}
                     <br />
                     {post.content}

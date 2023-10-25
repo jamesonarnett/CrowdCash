@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 import { Head } from "@inertiajs/react";
 import axios from "axios";
 import SinglePost from "@/Components/SinglePost";
+import PostButton from "@/Components/PostButton";
+import ErrorText from "@/Components/error/ErrorText";
+import Toast from "@/Components/toast/Toast";
+import toast from "react-hot-toast";
 
 export default function Dashboard({ auth }) {
     const [posts, setPosts] = useState([]);
@@ -27,10 +31,7 @@ export default function Dashboard({ auth }) {
     return (
         <>
             {error ? (
-                <div>
-                    <p>Oh no, looks like you've found a bug...</p>
-                    <p>{errMessage}</p>
-                </div>
+                <ErrorText errMessage={errMessage} />
             ) : (
                 <AuthenticatedLayout
                     user={auth.user}
@@ -41,12 +42,13 @@ export default function Dashboard({ auth }) {
                     }
                 >
                     <Head title="Dashboard" />
-
+                    <Toast />
                     <div className="py-4">
                         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                             <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                                 <div className="p-6 text-gray-900">
-                                    Hi {auth.user.name}, you're logged in!
+                                    Hi {auth.user.name}, you're logged in! (Top
+                                    posts since you left?)
                                 </div>
                             </div>
 
@@ -55,7 +57,13 @@ export default function Dashboard({ auth }) {
                                     <SinglePost key={post.id} post={post} />
                                 ))
                             ) : (
-                                <p>No posts available</p>
+                                <div className="flex flex-col md:flex-row w-100 justify-center my-10">
+                                    <p className="font-semibold my-4 mx-2 md:mx-0">
+                                        No posts available create your first
+                                        post now!
+                                    </p>
+                                    <PostButton text="Create Post" />
+                                </div>
                             )}
                         </div>
                     </div>

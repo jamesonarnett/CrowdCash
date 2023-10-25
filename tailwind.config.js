@@ -12,14 +12,20 @@ export default {
 
     theme: {
         extend: {
+            colors: {
+                primary: "#66C7F4",
+                secondary: "#C1CAD6",
+                tertiary: "#6C6EA0",
+                quaternary: "#FF1053",
+            },
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
             },
             backgroundImage: (theme) => ({
                 "gradient-primary":
-                    "linear-gradient(180deg, #eeeeee 0%, #b39ddb 100%)",
+                    "linear-gradient(180deg, #FFFFFF 30%, #66C7F4 100%)",
                 "gradient-primary-flip":
-                    "linear-gradient(0deg, #eeeeee 0%, #b39ddb 100%)",
+                    "linear-gradient(0deg, #FFFFFF 0%, #66C7F4 100%)",
             }),
         },
     },

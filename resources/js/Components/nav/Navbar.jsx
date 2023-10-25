@@ -26,6 +26,12 @@ const Navbar = ({ user }) => {
                             >
                                 Dashboard
                             </NavLink>
+                            <NavLink
+                                href={route("post")}
+                                active={route().current("post")}
+                            >
+                                Post
+                            </NavLink>
                         </div>
                     </div>
 
@@ -132,6 +138,12 @@ const Navbar = ({ user }) => {
                         active={route().current("dashboard")}
                     >
                         Dashboard
+                    </ResponsiveNavLink>
+                    <ResponsiveNavLink
+                        href={route("post")}
+                        active={route().current("post")}
+                    >
+                        Post
                     </ResponsiveNavLink>
                 </div>
 

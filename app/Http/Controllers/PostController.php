@@ -35,13 +35,25 @@ class PostController extends Controller
     public function store(Request $request)
     {   
         try {
-            $post = Post::create($request->all());
+            //create slug from request title
+            $slug = str_replace(' ', '-', strtolower($request->title));
+
+            //create post
+            $post = Post::create([
+                'user_id' => $request->user_id,
+                'title' => $request->title,
+                'slug' => $slug,
+                'content' => $request->content,
+                'is_published' => 1
+            ]);
+
             return response()->json([
-                'post' => $post
+                'post' => $post,
+                'success' => true
             ]);
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Post not created!'
+                'message' => 'Post not created!' . $e->getMessage()
             ]);
         }
     }
