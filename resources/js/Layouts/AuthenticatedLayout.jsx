@@ -3,7 +3,7 @@ import Navbar from "../Components/nav/Navbar";
 
 export default function Authenticated({ user, header, children }) {
     return (
-        <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen bg-gradient-primary-flip">
             <Navbar user={user} />
             {/* {header && (
                 <header className="bg-white shadow">
