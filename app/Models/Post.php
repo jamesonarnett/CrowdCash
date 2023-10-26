@@ -24,18 +24,36 @@ class Post extends Model
         'is_published' => 'boolean',
     ];
 
-    public function comments()
-    {
-        // return $this->hasMany(Comment::class);
-    }
-
-    public function tags()
-    {
-        // return $this->belongsToMany(Tag::class);
-    }
-
     public function user()
     {
-        // return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function votes()
+    {
+        return $this->belongsToMany(User::class, 'votes', 'post_id', 'user_id')
+            ->withPivot('type');
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->where('is_published', true);
+    }
+
+    public function scopeWithCommentsCount($query)
+    {
+        return $query->withCount('comments');
+    }
+
+    public function scopeWithUserVote($query, $user)
+    {
+        return $query->with(['votes' => function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        }]);
     }
 }

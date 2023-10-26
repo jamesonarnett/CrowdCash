@@ -25,7 +25,11 @@ const Posts = ({ auth, posts }) => {
                 <div>
                     {posts.length > 0 ? (
                         posts.map((post) => (
-                            <SinglePost key={post.id} post={post} />
+                            <SinglePost
+                                key={post.id}
+                                post={post}
+                                user={auth.user}
+                            />
                         ))
                     ) : (
                         <p>No posts available</p>
