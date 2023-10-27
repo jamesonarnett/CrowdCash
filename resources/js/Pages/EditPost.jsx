@@ -1,5 +1,5 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Head } from "@inertiajs/react";
 import LoadingSpinner from "@/Components/LoadingSpinner";
 import TextInput from "@/Components/TextInput";
@@ -7,7 +7,7 @@ import SubmitBtn from "@/Components/buttons/SubmitBtn";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-export default function CreatePost({ auth }) {
+export default function EditPost({ auth, post }) {
     const [formData, setFormData] = useState({
         user_id: auth.user.id,
         title: "",
@@ -25,10 +25,10 @@ export default function CreatePost({ auth }) {
         setIsLoading(true);
 
         axios
-            .post("/api/post", formData)
+            .put(`/api/post/${post.id}`, formData)
             .then((response) => {
                 if (response.data.success) {
-                    toast("Post created successfully!", {
+                    toast("Post updated successfully!", {
                         icon: "👍",
                     });
 
@@ -39,18 +39,28 @@ export default function CreatePost({ auth }) {
                 }
             })
             .catch((error) => {
-                toast.error("An error occurred while posting your data.");
                 setIsLoading(false);
+                toast.error("An error occurred while posting your data.");
                 console.error(error);
             });
     };
+
+    useEffect(() => {
+        if (post?.user_id === auth.user.id) {
+            setFormData({
+                user_id: auth.user.id,
+                title: post.title,
+                content: post.content,
+            });
+        }
+    }, []);
 
     return (
         <AuthenticatedLayout
             user={auth.user}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Post
+                    Edit Post
                 </h2>
             }
         >
@@ -60,8 +70,7 @@ export default function CreatePost({ auth }) {
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="flex flex-col w-100 justify-center my-10">
                         <h1 className="text-xl font-semibold mt-4 text-center">
-                            From your heart to theirs, share your experiences
-                            with the world and find the assistance you need!
+                            Edit post text
                         </h1>
 
                         <div className="flex justify-center">
@@ -106,7 +115,7 @@ export default function CreatePost({ auth }) {
                                                 }}
                                                 type="button"
                                             />
-                                            <SubmitBtn text="Create Post" />
+                                            <SubmitBtn text="Update Post" />
                                         </div>
                                     </div>
                                 </form>

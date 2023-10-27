@@ -34,6 +34,13 @@ Route::get('/create-post', function () {
     return Inertia::render('CreatePost');
 })->middleware(['auth', 'verified'])->name('post');
 
+
+Route::get('/edit-post/{id}', function ($id) {
+    $post = Post::find($id);
+    if ($post) return Inertia::render('EditPost', ['post' => $post]);
+    return Inertia::render('EditPost', ['post' => null]);
+})->middleware(['auth', 'verified'])->name('post.edit');
+
 Route::get('/post/{slug}', function ($slug) {
     $post = Post::where('slug', $slug)->first();
     if ($post) return Inertia::render('UserPost', ['post' => $post]);

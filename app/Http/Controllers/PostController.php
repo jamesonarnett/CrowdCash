@@ -62,12 +62,31 @@ class PostController extends Controller
     //update post
     public function update(Request $request, $id)
     {
-        $post = Post::find($id);
-        $post->update($request->all());
+        try {
+            //create slug from request title
+            $slug = str_replace(' ', '-', strtolower($request->title));
 
-        return response()->json([
-            'post' => $post
-        ]);
+            //find post
+            $post = Post::find($id);
+
+            //update post
+            $post->update([
+                'user_id' => $request->user_id,
+                'title' => $request->title,
+                'slug' => $slug,
+                'content' => $request->content,
+                'is_published' => 1
+            ]);
+
+            return response()->json([
+                'post' => $post,
+                'success' => true
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Post not updated!' . $e->getMessage()
+            ]);
+        }
     }
 
     //delete post

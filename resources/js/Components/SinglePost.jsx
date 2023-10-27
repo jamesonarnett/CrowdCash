@@ -3,11 +3,12 @@ import { Link } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import { AiFillEdit } from "react-icons/ai";
+import { FaCommentDots } from "react-icons/fa";
 
 const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
     const [isEditable, setIsEditable] = useState(false);
 
-    const editPost = (postID) => {
+    const addComment = (postID) => {
         //
     };
 
@@ -22,11 +23,11 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
     }, [user.id, post.user_id, isPostOwner]);
 
     return (
-        <Link href={route("post.slug", { slug: post.slug })}>
-            <div
-                className="border-black border-2 p-3 bg-white my-5 rounded-md 
+        <div
+            className="border-black border-2 p-3 bg-white my-5 rounded-md 
             shadow-lg m-sm-1 mx-2 md:mx-0"
-            >
+        >
+            <Link href={route("post.slug", { slug: post.slug })}>
                 {post && (
                     <div className="p-2 rounded-md bg-teal-300">
                         {user?.name}
@@ -36,26 +37,32 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
                         {post.content}
                     </div>
                 )}
+            </Link>
 
-                {isEditable && (
-                    <div className="flex justify-end mt-1">
-                        <button
-                            className="hover:bg-primary text-white font-bold py-2 px-4 rounded"
-                            onClick={() => editPost(post.id)}
-                        >
+            {isEditable && (
+                <div className="flex justify-end mt-1">
+                    <Link href={route("post.edit", { id: post.id })}>
+                        <button className="hover:bg-primary text-white font-bold py-2 px-4 rounded">
                             <AiFillEdit fill="#000000" />
                         </button>
+                    </Link>
 
-                        <button
-                            className="hover:bg-quaternary text-white font-bold py-2 px-4 rounded"
-                            onClick={() => deletePost(post.id)}
-                        >
-                            <BsFillTrash3Fill fill="#000000" />
-                        </button>
-                    </div>
-                )}
-            </div>
-        </Link>
+                    <button
+                        className="hover:bg-primary text-white font-bold py-2 px-4 rounded"
+                        onClick={() => addComment(post.id)}
+                    >
+                        <FaCommentDots fill="#000000" />
+                    </button>
+
+                    <button
+                        className="hover:bg-quaternary text-white font-bold py-2 px-4 rounded"
+                        onClick={() => deletePost(post.id)}
+                    >
+                        <BsFillTrash3Fill fill="#000000" />
+                    </button>
+                </div>
+            )}
+        </div>
     );
 };
 
