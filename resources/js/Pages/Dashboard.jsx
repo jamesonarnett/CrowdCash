@@ -3,10 +3,9 @@ import { useEffect, useState } from "react";
 import { Head } from "@inertiajs/react";
 import axios from "axios";
 import SinglePost from "@/Components/SinglePost";
-import PostButton from "@/Components/PostButton";
+import GoToPostBtn from "@/Components/buttons/GoToPostBtn";
 import ErrorText from "@/Components/error/ErrorText";
 import Toast from "@/Components/toast/Toast";
-import toast from "react-hot-toast";
 import LoadingSpinner from "@/Components/LoadingSpinner";
 
 export default function Dashboard({ auth }) {
@@ -68,15 +67,18 @@ export default function Dashboard({ auth }) {
                                         key={post.id}
                                         post={post}
                                         user={auth.user}
+                                        getPosts={getPosts}
                                     />
                                 ))
                             ) : (
-                                <div className="flex flex-col md:flex-row w-100 justify-center my-10">
-                                    <p className="font-semibold my-4 mx-2 md:mx-0">
-                                        No posts available create your first
-                                        post now!
+                                <div className="flex flex-col items-center md:flex-row w-100 justify-center my-10">
+                                    <p className="font-semibold text-lg my-4 mx-2 md:mx-0">
+                                        No posts available. Create your first
+                                        post now?
                                     </p>
-                                    <PostButton text="Create Post" />
+                                    <div className="px-3">
+                                        <GoToPostBtn text="Create Post" />
+                                    </div>
                                 </div>
                             )}
                         </div>

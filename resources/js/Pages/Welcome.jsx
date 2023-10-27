@@ -6,7 +6,7 @@ export default function Welcome({ auth }) {
         <>
             <Head title="Vote" />
             <div className="min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
-                <div className="p-6 text-right bg-myWhite flex items-center justify-between">
+                <div className="p-6 text-right bg-myWhite flex items-center justify-between border-b-2 border-black fixed w-[100%]">
                     <div className="flex flex-col md:flex-row items-center w-full justify-between">
                         <div className="flex items-center">
                             <ApplicationLogo />
@@ -41,7 +41,7 @@ export default function Welcome({ auth }) {
                 </div>
 
                 <div className="bg-gradient-landing min-h-screen flex flex-col">
-                    <section className="p-8 text-center text-black">
+                    <section className="mt-[160px] md:mt-[100px] p-8 text-center text-black">
                         <h1 className="text-4xl font-extrabold">
                             Your Platform for Making a Difference
                         </h1>
@@ -64,13 +64,76 @@ export default function Welcome({ auth }) {
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             <div className="p-4 border border-black rounded-lg">
-                                {/* Step 1 content */}
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.
+                                    Ut faucibus pulvinar elementum integer.
+                                    Tristique nulla aliquet enim tortor at
+                                    auctor urna nunc. Morbi non arcu risus quis
+                                    varius quam quisque id. Diam in arcu cursus
+                                    euismod quis. Sit amet aliquam id diam
+                                    maecenas ultricies mi. Id volutpat lacus
+                                    laoreet non curabitur. Ut diam quam nulla
+                                    porttitor massa id. Semper viverra nam
+                                    libero justo laoreet sit. Nam aliquam sem et
+                                    tortor consequat. Eleifend quam adipiscing
+                                    vitae proin sagittis nisl. Aliquet sagittis
+                                    id consectetur purus ut. Purus viverra
+                                    accumsan in nisl nisi. Urna neque viverra
+                                    justo nec ultrices dui. Nunc eget lorem
+                                    dolor sed viverra ipsum nunc aliquet
+                                    bibendum. Amet facilisis magna etiam tempor
+                                    orci eu lobortis elementum.
+                                </p>
                             </div>
                             <div className="p-4 border border-black rounded-lg">
-                                {/* Step 2 content */}
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.
+                                    Ut faucibus pulvinar elementum integer.
+                                    Tristique nulla aliquet enim tortor at
+                                    auctor urna nunc. Morbi non arcu risus quis
+                                    varius quam quisque id. Diam in arcu cursus
+                                    euismod quis. Sit amet aliquam id diam
+                                    maecenas ultricies mi. Id volutpat lacus
+                                    laoreet non curabitur. Ut diam quam nulla
+                                    porttitor massa id. Semper viverra nam
+                                    libero justo laoreet sit. Nam aliquam sem et
+                                    tortor consequat. Eleifend quam adipiscing
+                                    vitae proin sagittis nisl. Aliquet sagittis
+                                    id consectetur purus ut. Purus viverra
+                                    accumsan in nisl nisi. Urna neque viverra
+                                    justo nec ultrices dui. Nunc eget lorem
+                                    dolor sed viverra ipsum nunc aliquet
+                                    bibendum. Amet facilisis magna etiam tempor
+                                    orci eu lobortis elementum.
+                                </p>
                             </div>
                             <div className="p-4 border border-black rounded-lg">
-                                {/* Step 3 content */}
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.
+                                    Ut faucibus pulvinar elementum integer.
+                                    Tristique nulla aliquet enim tortor at
+                                    auctor urna nunc. Morbi non arcu risus quis
+                                    varius quam quisque id. Diam in arcu cursus
+                                    euismod quis. Sit amet aliquam id diam
+                                    maecenas ultricies mi. Id volutpat lacus
+                                    laoreet non curabitur. Ut diam quam nulla
+                                    porttitor massa id. Semper viverra nam
+                                    libero justo laoreet sit. Nam aliquam sem et
+                                    tortor consequat. Eleifend quam adipiscing
+                                    vitae proin sagittis nisl. Aliquet sagittis
+                                    id consectetur purus ut. Purus viverra
+                                    accumsan in nisl nisi. Urna neque viverra
+                                    justo nec ultrices dui. Nunc eget lorem
+                                    dolor sed viverra ipsum nunc aliquet
+                                    bibendum. Amet facilisis magna etiam tempor
+                                    orci eu lobortis elementum.
+                                </p>
                             </div>
                         </div>
                     </section>

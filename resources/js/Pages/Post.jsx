@@ -36,7 +36,7 @@ export default function Post({ auth }) {
 
                     // lol make em wait a bit - rEaCtiViTy
                     setTimeout(() => {
-                        window.location.href = "/dashboard";
+                        window.location.href = "/posts";
                     }, 2000);
                 }
             })
