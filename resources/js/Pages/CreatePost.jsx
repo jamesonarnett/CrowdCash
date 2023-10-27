@@ -7,7 +7,7 @@ import TextInput from "@/Components/TextInput";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-export default function Post({ auth }) {
+export default function CreatePost({ auth }) {
     const [error, setError] = useState(false);
     const [errMessage, setErrMessage] = useState("");
     const [formData, setFormData] = useState({
