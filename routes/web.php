@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Post;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -30,12 +31,13 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/create-post', function () {
-    return Inertia::render('Post');
+    return Inertia::render('CreatePost');
 })->middleware(['auth', 'verified'])->name('post');
 
-// make a route for post/slug
-Route::get('/post/{slug}', function () {
-    return Inertia::render('UserPost');
+Route::get('/post/{slug}', function ($slug) {
+    $post = Post::where('slug', $slug)->first();
+    if ($post) return Inertia::render('UserPost', ['post' => $post]);
+    return Inertia::render('UserPost', ['post' => null]);
 })->middleware(['auth', 'verified'])->name('post.slug');
 
 Route::middleware('auth')->group(function () {
