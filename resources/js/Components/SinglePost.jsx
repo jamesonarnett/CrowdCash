@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import { AiFillEdit } from "react-icons/ai";
 import { FaCommentDots } from "react-icons/fa";
+import VoteBox from "./VoteBox";
 
 const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
     const [isEditable, setIsEditable] = useState(false);
@@ -39,14 +40,12 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
                 )}
             </Link>
 
-            {isEditable && (
-                <div className="flex justify-end mt-1">
-                    <Link href={route("post.edit", { id: post.id })}>
-                        <button className="hover:bg-primary text-white font-bold py-2 px-4 rounded">
-                            <AiFillEdit fill="#000000" />
-                        </button>
-                    </Link>
+            <div className="flex w-full mt-1">
+                <div className="w-full">
+                    <VoteBox post={post} />
+                </div>
 
+                <div className="flex justify-end">
                     <button
                         className="hover:bg-primary text-white font-bold py-2 px-4 rounded"
                         onClick={() => addComment(post.id)}
@@ -54,14 +53,24 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
                         <FaCommentDots fill="#000000" />
                     </button>
 
-                    <button
-                        className="hover:bg-quaternary text-white font-bold py-2 px-4 rounded"
-                        onClick={() => deletePost(post.id)}
-                    >
-                        <BsFillTrash3Fill fill="#000000" />
-                    </button>
+                    {isEditable && (
+                        <>
+                            <Link href={route("post.edit", { id: post.id })}>
+                                <button className="hover:bg-primary text-white font-bold py-2 px-4 rounded">
+                                    <AiFillEdit fill="#000000" />
+                                </button>
+                            </Link>
+
+                            <button
+                                className="hover:bg-quaternary text-white font-bold py-2 px-4 rounded"
+                                onClick={() => deletePost(post.id)}
+                            >
+                                <BsFillTrash3Fill fill="#000000" />
+                            </button>
+                        </>
+                    )}
                 </div>
-            )}
+            </div>
         </div>
     );
 };
