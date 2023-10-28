@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,8 +42,18 @@ Route::delete('/post/{id}', [PostController::class, 'destroy']);
 /**
  * User routes
  */
-// Route::get('/user', [UserController::class, 'index']);
-
-// Route::post('/user', [UserController::class, 'store']);
-
 Route::get('/user/{id}', [UserController::class, 'show']);
+
+
+/**
+ * Comment routes
+ */
+Route::get('/comment', [CommentController::class, 'index']);
+
+Route::post('/comment', [CommentController::class, 'store']);
+
+Route::get('/comment/{id}', [CommentController::class, 'show']);
+
+Route::put('/comment/{id}', [CommentController::class, 'update']);
+
+Route::delete('/comment/{id}', [CommentController::class, 'destroy']);

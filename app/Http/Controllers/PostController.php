@@ -94,6 +94,10 @@ class PostController extends Controller
     {
         try {
             $post = Post::find($id);
+
+            //delete all post comments first
+            $post->comments()->delete();
+
             $post->delete();
 
             return response()->json([

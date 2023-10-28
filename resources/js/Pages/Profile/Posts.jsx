@@ -2,9 +2,9 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Head } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import SinglePost from "@/Components/SinglePost";
-import axios from "axios";
+import SinglePost from "@/Components/posts/SinglePost";
 import GoToPostBtn from "@/Components/buttons/GoToPostBtn";
+import axios from "axios";
 import toast from "react-hot-toast";
 
 const Posts = ({ auth }) => {

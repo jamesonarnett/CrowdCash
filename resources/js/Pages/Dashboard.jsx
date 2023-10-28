@@ -2,7 +2,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { useEffect, useState } from "react";
 import { Head } from "@inertiajs/react";
 import axios from "axios";
-import SinglePost from "@/Components/SinglePost";
+import SinglePost from "@/Components/posts/SinglePost";
 import GoToPostBtn from "@/Components/buttons/GoToPostBtn";
 import ErrorText from "@/Components/error/ErrorText";
 import Toast from "@/Components/toast/Toast";
