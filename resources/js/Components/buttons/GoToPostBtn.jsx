@@ -1,5 +1,5 @@
 import React from "react";
-import NavLink from "../NavLink";
+import NavLink from "../nav/NavLink";
 
 const GoToPostBtn = ({ text }) => {
     return (

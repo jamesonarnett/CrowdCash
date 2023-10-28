@@ -2,7 +2,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { useEffect, useState } from "react";
 import { Head } from "@inertiajs/react";
 import LoadingSpinner from "@/Components/LoadingSpinner";
-import TextInput from "@/Components/TextInput";
+import TextInput from "@/Components/inputs/TextInput";
 import SubmitBtn from "@/Components/buttons/SubmitBtn";
 import axios from "axios";
 import toast from "react-hot-toast";

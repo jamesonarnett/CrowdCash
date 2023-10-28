@@ -1,8 +1,8 @@
 import { useState } from "react";
 import ApplicationLogo from "@/Components/ApplicationLogo";
-import Dropdown from "@/Components/Dropdown";
-import NavLink from "@/Components/NavLink";
-import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
+import Dropdown from "@/Components/inputs/Dropdown";
+import NavLink from "@/Components/nav/NavLink";
+import ResponsiveNavLink from "@/Components/nav/ResponsiveNavLink";
 import { Link } from "@inertiajs/react";
 
 const Navbar = ({ user }) => {
