@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import Checkbox from "@/Components/Checkbox";
 import GuestLayout from "@/Layouts/GuestLayout";
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import PrimaryButton from "@/Components/PrimaryButton";
+import InputError from "@/Components/inputs/InputError";
+import InputLabel from "@/Components/inputs/InputLabel";
+import PrimaryButton from "@/Components/buttons/PrimaryButton";
 import TextInput from "@/Components/inputs/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
 
