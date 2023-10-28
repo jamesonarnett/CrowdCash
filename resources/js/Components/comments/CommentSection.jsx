@@ -13,6 +13,8 @@ const CommentSection = ({
     newComment,
     setNewComment,
     addComment,
+    getComments,
+    user,
 }) => {
     return (
         <div
@@ -34,25 +36,29 @@ const CommentSection = ({
                     </ToolTip>
 
                     {comments.length > 0 ? (
-                        <div>
+                        <>
                             {comments.map((comment) => (
                                 <SingleComment
                                     key={comment.id}
                                     comment={comment}
+                                    user={user}
+                                    getComments={getComments}
                                 />
                             ))}
-                        </div>
+                        </>
                     ) : (
-                        <p>No Comments yet.</p>
+                        <p className="w-full text-center">
+                            Be the first to comment here?
+                        </p>
                     )}
 
                     <div className="flex flex-col md:flex-row mt-2 items-center">
-                        <TextInput
-                            label="Comment"
+                        <textarea
                             name="comment"
-                            type="text"
-                            placeholder="Enter your comment"
-                            className="border-black border-2 rounded-md p-2 w-full"
+                            className="border-black border-2 rounded-md p-2 w-full mt-2 md:mt-0 
+                                focus:outline-none focus:ring-2 focus:ring-primary"
+                            rows="1"
+                            placeholder="Post a comment..."
                             value={newComment.comment}
                             onChange={(e) => {
                                 setNewComment({

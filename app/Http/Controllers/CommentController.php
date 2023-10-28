@@ -19,7 +19,7 @@ class CommentController extends Controller
             $post = $request->post_id;
             
             //get comments by post id sorted by latest
-            $comments = Comment::where('post_id', $post)
+            $comments = Comment::with('user')->where('post_id', $post)
                 ->orderBy('created_at', 'desc')
                 ->get();
 
@@ -120,16 +120,16 @@ class CommentController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-     public function destroy($id)
+     public function destroy(Request $request, $id)
      {
          try {
              //delete comment
-             $comment = Comment::find($id);
+             $comment = Comment::find($request->id);
              $comment->delete();
 
              return response()->json([
                  'success' => true,
-                 'comment' => $comment
+                 'message' => 'Comment deleted successfully!'
              ]);
          } catch (\Exception $e) {
              return response()->json([

@@ -7,32 +7,63 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        // if auth, return all posts
         if(auth()->user()) {
-            // return all posts ordered by created_at
             return response()->json([
-                'posts' => Post::orderBy('created_at', 'DESC')->get()
+                'posts' => Post::with('user')
+                    ->with('comments')
+                    ->orderBy('created_at', 'DESC')
+                    ->get()
             ]);
         } else {
-            // if not auth, return only published posts
             return response()->json([
-                'posts' => Post::orderBy('created_at', 'DESC')->where('is_published', 1)->get()
+                'posts' => Post::with('user')
+                    ->with('comments')
+                    ->orderBy('created_at', 'DESC')
+                    ->where('is_published', 1)
+                    ->get()
             ]);
         }
     }
 
-    //find post by id
+    /**
+     * Display a listing of THIS user's posts.
+     * @return \Illuminate\Http\Response
+     */
+    public function userIndex($id)
+    {
+        return response()->json([
+            'posts' => Post::with('user')
+                ->with('comments')
+                ->orderBy('created_at', 'DESC')
+                ->where('user_id', $id)
+                ->get()
+        ]);
+    }
+
+    /**
+     * Display a single post.
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
         return response()->json([
-            'post' => Post::find($id)
+            'post' => Post::with('user')
+                ->with('comments')
+                ->find($id)
         ]);
     }
 
 
-    //create new post
+    /**
+     * Create a new post.
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {   
         try {
@@ -59,7 +90,10 @@ class PostController extends Controller
         }
     }
 
-    //update post
+    /**
+     * Update a post.
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
         try {
@@ -89,7 +123,10 @@ class PostController extends Controller
         }
     }
 
-    //delete post
+    /**
+     * Delete a post.
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         try {

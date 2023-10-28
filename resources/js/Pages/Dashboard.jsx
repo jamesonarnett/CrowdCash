@@ -14,11 +14,11 @@ export default function Dashboard({ auth }) {
     const [errMessage, setErrMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
-    const getPosts = () => {
+    const getPosts = async () => {
         setIsLoading(true);
 
         try {
-            axios.get("/api/post").then((response) => {
+            await axios.get("/api/post").then((response) => {
                 setPosts(response.data.posts);
             });
 
@@ -30,7 +30,9 @@ export default function Dashboard({ auth }) {
     };
 
     useEffect(() => {
-        getPosts();
+        (async () => {
+            await getPosts();
+        })();
     }, []);
 
     return (

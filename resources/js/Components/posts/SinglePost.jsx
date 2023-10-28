@@ -70,10 +70,6 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
         }
     }, [user.id, post.user_id, isPostOwner]);
 
-    useEffect(() => {
-        console.log(comments);
-    }, [comments]);
-
     return (
         <div
             className="border-black border-2 p-3 bg-white my-5 rounded-md 
@@ -82,7 +78,7 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
             <Link href={route("post.slug", { slug: post.slug })}>
                 {post && (
                     <div className="p-2 rounded-md bg-teal-300">
-                        {user?.name}
+                        {post.user?.name}
                         <br />
                         {post.title}
                         <br />
@@ -136,7 +132,7 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
                                 >
                                     <BsFillTrash3Fill
                                         fill="#000000"
-                                        className="hover:fill-primary"
+                                        className="hover:fill-quaternary"
                                     />
                                 </button>
                             </ToolTip>
@@ -154,6 +150,8 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
                     newComment={newComment}
                     setNewComment={setNewComment}
                     addComment={addComment}
+                    user={user}
+                    getComments={getComments}
                 />
             )}
         </div>

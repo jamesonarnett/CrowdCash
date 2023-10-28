@@ -26,6 +26,14 @@ Route::get('/', function () {
     ]);
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/posts', [ProfileController::class, 'posts'])->name('profile.posts');
+});
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -36,23 +44,24 @@ Route::get('/create-post', function () {
 
 
 Route::get('/edit-post/{id}', function ($id) {
-    $post = Post::find($id);
+    $post = Post::where('id', $id)
+        ->with('user')
+        ->first();
+
     if ($post) return Inertia::render('EditPost', ['post' => $post]);
+
     return Inertia::render('EditPost', ['post' => null]);
 })->middleware(['auth', 'verified'])->name('post.edit');
 
 Route::get('/post/{slug}', function ($slug) {
-    $post = Post::where('slug', $slug)->first();
+    $post = Post::where('slug', $slug)
+        ->with('user')
+        ->with('comments')
+        ->first();
+
     if ($post) return Inertia::render('UserPost', ['post' => $post]);
+
     return Inertia::render('UserPost', ['post' => null]);
 })->middleware(['auth', 'verified'])->name('post.slug');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    Route::get('/posts', [ProfileController::class, 'posts'])->name('profile.posts');
-});
 
 require __DIR__.'/auth.php';

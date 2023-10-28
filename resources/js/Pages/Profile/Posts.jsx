@@ -10,11 +10,13 @@ import toast from "react-hot-toast";
 const Posts = ({ auth }) => {
     const [posts, setPosts] = useState([]);
 
-    const getPosts = () => {
+    const getPosts = async () => {
         try {
-            axios.get("/api/post").then((response) => {
-                setPosts(response.data.posts);
-            });
+            await axios
+                .get(`/api/post/user/${auth.user.id}`)
+                .then((response) => {
+                    setPosts(response.data.posts);
+                });
         } catch (error) {
             console.log(error);
         }
