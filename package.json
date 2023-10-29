@@ -5,6 +5,7 @@
     "scripts": {
         "start": "vite",
         "dev": "vite",
+        "build:prod": "node --max_old_space_size=4096 node_modules/.bin/vite build",
         "build": "vite build",
         "prettier": "prettier"
     },
