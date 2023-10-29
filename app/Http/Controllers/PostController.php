@@ -17,6 +17,7 @@ class PostController extends Controller
             return response()->json([
                 'posts' => Post::with('user')
                     ->with('comments')
+                    ->with('votes')
                     ->orderBy('created_at', 'DESC')
                     ->get()
             ]);
@@ -24,6 +25,7 @@ class PostController extends Controller
             return response()->json([
                 'posts' => Post::with('user')
                     ->with('comments')
+                    ->with('votes')
                     ->orderBy('created_at', 'DESC')
                     ->where('is_published', 1)
                     ->get()
@@ -40,6 +42,7 @@ class PostController extends Controller
         return response()->json([
             'posts' => Post::with('user')
                 ->with('comments')
+                ->with('votes')
                 ->orderBy('created_at', 'DESC')
                 ->where('user_id', $id)
                 ->get()
@@ -55,6 +58,7 @@ class PostController extends Controller
         return response()->json([
             'post' => Post::with('user')
                 ->with('comments')
+                ->with('votes')
                 ->find($id)
         ]);
     }

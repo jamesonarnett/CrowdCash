@@ -69,22 +69,10 @@ class PostTest extends TestCase
     public function it_can_return_posts_with_user_vote()
     {
         $post = Post::factory()->create(['user_id' => $this->user->id]);
-        $post->votes()->attach($this->user->id, ['type' => 1]);
+        $post->votes()->create(['user_id' => $this->user->id, 'type' => 1]);
 
-        $postWithUserVote = Post::withUserVote($this->user)->first();
+        $voteCount = Post::withVotesCount()->first()->votes_count;
 
-        $this->assertEquals(1, $postWithUserVote->votes[0]->pivot->type);
-    }
-
-    /** @test */
-    public function it_can_return_posts_with_user_vote_for_another_user()
-    {
-        $user2 = User::factory()->create();
-        $post = Post::factory()->create(['user_id' => $this->user->id]);
-        $post->votes()->attach($user2->id, ['type' => 1]);
-
-        $postWithUserVote = Post::withUserVote($user2)->first();
-
-        $this->assertEquals(1, $postWithUserVote->votes[0]->pivot->type);
+        $this->assertEquals(1, $voteCount);
     }
 }

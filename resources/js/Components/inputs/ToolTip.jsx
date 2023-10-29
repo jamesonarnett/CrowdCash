@@ -8,7 +8,7 @@ function ToolTip({ text, children, className = "" }) {
     const handleMouseEnter = () => {
         timeoutId = setTimeout(() => {
             setShowToolTip(true);
-        }, 750);
+        }, 500);
     };
 
     const handleMouseLeave = () => {

@@ -36,8 +36,7 @@ class Post extends Model
 
     public function votes()
     {
-        return $this->belongsToMany(User::class, 'votes', 'post_id', 'user_id')
-            ->withPivot('type');
+        return $this->hasMany(Vote::class);
     }
 
     public function scopePublished($query)
@@ -50,10 +49,8 @@ class Post extends Model
         return $query->withCount('comments');
     }
 
-    public function scopeWithUserVote($query, $user)
+    public function scopeWithVotesCount($query)
     {
-        return $query->with(['votes' => function ($query) use ($user) {
-            $query->where('user_id', $user->id);
-        }]);
+        return $query->withCount('votes');
     }
 }

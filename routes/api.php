@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\VoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,3 +60,13 @@ Route::get('/comment/{id}', [CommentController::class, 'show']);
 Route::put('/comment/{id}', [CommentController::class, 'update']);
 
 Route::delete('/comment/{id}', [CommentController::class, 'destroy']);
+
+
+/**
+ * Vote routes
+ */
+Route::get('/vote', [VoteController::class, 'index']);
+
+Route::post('/vote', [VoteController::class, 'store']);
+
+Route::delete('/vote/{id}', [VoteController::class, 'destroy']);

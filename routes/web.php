@@ -57,6 +57,7 @@ Route::get('/post/{slug}', function ($slug) {
     $post = Post::where('slug', $slug)
         ->with('user')
         ->with('comments')
+        ->with('votes')
         ->first();
 
     if ($post) return Inertia::render('UserPost', ['post' => $post]);
