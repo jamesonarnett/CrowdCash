@@ -1,5 +1,7 @@
 import { Link, Head } from "@inertiajs/react";
 import ApplicationLogo from "@/Components/ApplicationLogo";
+import SkyDollars from "../../../public/images/skyDollars.png";
+import SubmitBtn from "@/Components/buttons/SubmitBtn";
 
 export default function Welcome({ auth }) {
     return (
@@ -9,7 +11,7 @@ export default function Welcome({ auth }) {
                 <div className="p-6 text-right bg-myWhite flex items-center justify-between border-b-2 border-black fixed w-[100%]">
                     <div className="flex flex-col md:flex-row items-center w-full justify-between">
                         <div className="flex items-center">
-                            <ApplicationLogo />
+                            <ApplicationLogo className="!max-w-12 !max-h-10" />
                         </div>
                         <div className="flex my-5 md:m-0 text-xl">
                             {auth.user ? (
@@ -41,22 +43,40 @@ export default function Welcome({ auth }) {
                 </div>
 
                 <div className="bg-gradient-landing min-h-screen flex flex-col">
-                    <section className="mt-[160px] md:mt-[100px] p-8 text-center text-black">
-                        <h1 className="text-4xl font-extrabold">
-                            Your Platform for Making a Difference
-                        </h1>
-                        <p className="mt-4 text-xl">
-                            Join our community and help those in need by casting
-                            your votes.
-                        </p>
-                        <a
-                            href={route("register")}
-                            className="mt-6 bg-primary text-black px-6 py-3 text-xl rounded-full 
-                            inline-block hover:bg-myWhite hover:text-black transition duration-300 ease-in-out
-                            hover:shadow-lg"
-                        >
-                            Get Started
-                        </a>
+                    <section
+                        className="mt-[150px] md:mt-[90px] p-8 text-center text-black"
+                        style={{
+                            background: `url(${SkyDollars})`,
+                            backgroundSize: "100% 100%",
+                            backgroundPosition: "center center",
+                            backgroundRepeat: "no-repeat",
+                        }}
+                    >
+                        <div className="w-full flex justify-center">
+                            <div
+                                className=" font-bold p-5 rounded-md w-full md:w-1/2"
+                                style={{
+                                    backgroundColor: "rgba(102,199,244, 0.95)",
+                                }}
+                            >
+                                <h1 className="text-4xl font-extrabold">
+                                    Your Platform for Making a Difference
+                                </h1>
+                                <p className="mt-4 text-xl">
+                                    Join our community and help those in need by
+                                    casting your votes.
+                                </p>
+
+                                <SubmitBtn
+                                    text="Get Started"
+                                    onSubmit={() => {
+                                        window.location.href =
+                                            route("register");
+                                    }}
+                                    className="mt-4 min-w-1/3 text-xl font-semibold whitespace-nowrap"
+                                />
+                            </div>
+                        </div>
                     </section>
                     <section className="p-8 text-black">
                         <h2 className="text-2xl font-semibold mb-4">
