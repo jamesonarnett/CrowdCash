@@ -27,7 +27,6 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
             if (response.data.success) {
                 toast.success(response.data.message);
 
-                // setToggleComments(false);
                 setNewComment({
                     ...newComment,
                     comment: "",
@@ -89,7 +88,7 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
 
             <div className="flex w-full mt-1">
                 <div className="w-full">
-                    <VoteBox post={post} />
+                    <VoteBox post={post} user={user} />
                 </div>
 
                 <div className="flex justify-end">

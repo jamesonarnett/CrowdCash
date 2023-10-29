@@ -3,11 +3,16 @@ import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/inputs/Dropdown";
 import NavLink from "@/Components/nav/NavLink";
 import ResponsiveNavLink from "@/Components/nav/ResponsiveNavLink";
+import BuyVotesModal from "../votes/BuyVotesModal";
+import SubmitBtn from "../buttons/SubmitBtn";
 import { Link } from "@inertiajs/react";
 
 const Navbar = ({ user }) => {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
+
+    const [showBuyVotesModal, setShowBuyVotesModal] = useState(false);
+
     return (
         <nav className="bg-white border-b border-gray-100">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,7 +23,6 @@ const Navbar = ({ user }) => {
                                 <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
                             </Link>
                         </div>
-
                         <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <NavLink
                                 href={route("dashboard")}
@@ -26,14 +30,35 @@ const Navbar = ({ user }) => {
                             >
                                 Dashboard
                             </NavLink>
+
                             <NavLink
                                 href={route("post")}
                                 active={route().current("post")}
                             >
                                 Post
                             </NavLink>
+
+                            <p
+                                className={`cursor-pointer inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium 
+                                leading-5 transition duration-150 ease-in-out focus:outline-none
+                                    ${
+                                        showBuyVotesModal
+                                            ? "border-indigo-400 text-gray-900 focus:border-indigo-700 "
+                                            : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:text-gray-700 focus:border-gray-300"
+                                    }
+                                `}
+                                onClick={() => setShowBuyVotesModal(true)}
+                            >
+                                Buy Votes
+                            </p>
                         </div>
                     </div>
+
+                    <BuyVotesModal
+                        show={showBuyVotesModal}
+                        setShowBuyVotesModal={setShowBuyVotesModal}
+                        user={user}
+                    />
 
                     <div className="hidden sm:flex sm:items-center sm:ml-6">
                         <div className="ml-3 relative">
@@ -139,12 +164,26 @@ const Navbar = ({ user }) => {
                     >
                         Dashboard
                     </ResponsiveNavLink>
+
                     <ResponsiveNavLink
                         href={route("post")}
                         active={route().current("post")}
                     >
                         Post
                     </ResponsiveNavLink>
+
+                    <p
+                        className={`cursor-pointer w-full flex items-start pl-3 pr-4 py-2 border-l-4
+                                    ${
+                                        showBuyVotesModal
+                                            ? "border-indigo-400 text-indigo-700 bg-indigo-50 focus:text-indigo-800 focus:bg-indigo-100 focus:border-indigo-700"
+                                            : "border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300"
+                                    }
+                                `}
+                        onClick={() => setShowBuyVotesModal(true)}
+                    >
+                        Buy Votes
+                    </p>
                 </div>
 
                 <div className="pt-4 pb-1 border-t border-gray-200">
@@ -158,6 +197,7 @@ const Navbar = ({ user }) => {
                         <ResponsiveNavLink href={route("profile.posts")}>
                             Your Posts
                         </ResponsiveNavLink>
+
                         <ResponsiveNavLink href={route("profile.edit")}>
                             Profile
                         </ResponsiveNavLink>

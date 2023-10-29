@@ -1,6 +1,5 @@
 import React from "react";
 import { TiBackspace } from "react-icons/ti";
-import TextInput from "../inputs/TextInput";
 import SubmitBtn from "../buttons/SubmitBtn";
 import SingleComment from "./SingleComment";
 import ToolTip from "../inputs/ToolTip";

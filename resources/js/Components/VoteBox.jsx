@@ -1,12 +1,14 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { BiSolidUpvote } from "react-icons/bi";
+import BuyVotesModal from "./votes/BuyVotesModal";
 import ToolTip from "./inputs/ToolTip";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const VoteBox = ({ post }) => {
-    const [upvotes, setUpvotes] = useState(post?.votes?.length);
+const VoteBox = ({ post, user }) => {
+    const [votes, setVotes] = useState(post?.votes?.length);
+    const [showBuyVotesModal, setShowBuyVotesModal] = useState(false);
 
     const handleVote = async () => {
         try {
@@ -16,8 +18,11 @@ const VoteBox = ({ post }) => {
             });
 
             if (response.data.success) {
-                setUpvotes(response.data.votes);
+                setVotes(response.data.votes);
                 toast.success(response.data.message);
+            } else {
+                toast.error(response.data.message);
+                setShowBuyVotesModal(true);
             }
         } catch (error) {
             toast.error(error.response.data.message);
@@ -26,7 +31,7 @@ const VoteBox = ({ post }) => {
     };
 
     useEffect(() => {
-        setUpvotes(post?.votes?.length);
+        setVotes(post?.votes?.length);
     }, [post]);
 
     return (
@@ -43,7 +48,14 @@ const VoteBox = ({ post }) => {
                 </ToolTip>
             </button>
 
-            <div className="">{upvotes}</div>
+            <div className="">{votes}</div>
+
+            <BuyVotesModal
+                show={showBuyVotesModal}
+                setShowBuyVotesModal={setShowBuyVotesModal}
+                post={post}
+                user={user}
+            />
         </div>
     );
 };
