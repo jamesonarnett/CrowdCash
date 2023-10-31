@@ -73,6 +73,7 @@ const BuyVotesModal = ({ show, setShowBuyVotesModal, user }) => {
                     <CreditCardForm
                         selectedButton={selectedButton}
                         user={user}
+                        closeModal={closeModal}
                     />
                 </div>
             </div>

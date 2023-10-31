@@ -16,6 +16,9 @@ class VoteController extends Controller
      */
     public function store(Request $request)
     {
+
+        logger($request->all());
+        
         $user = User::where('id', $request->user_id)->first();
 
         if ($user->votes_available > 0) {

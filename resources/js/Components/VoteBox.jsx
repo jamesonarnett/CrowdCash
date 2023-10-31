@@ -14,7 +14,7 @@ const VoteBox = ({ post, user }) => {
         try {
             const response = await axios.post("/api/vote", {
                 post_id: post.id,
-                user_id: post.user_id,
+                user_id: user.id,
             });
 
             if (response.data.success) {
