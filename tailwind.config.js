@@ -14,7 +14,8 @@ export default {
         extend: {
             colors: {
                 primary: "#66C7F4",
-                secondary: "#C1CAD6",
+                offPrimary: "#60C0F1",
+                secondary: "#83F28F",
                 tertiary: "#6C8AE3",
                 quaternary: "#FF1053",
                 myWhite: "#FFFFFF", // meh, maybe not

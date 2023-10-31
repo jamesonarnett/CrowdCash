@@ -25,10 +25,10 @@ const BuyVotesModal = ({ show, setShowBuyVotesModal }) => {
                 </div>
 
                 <div className="flex flex-col items-center justify-center w-full">
-                    <h3 className="text-2xl font-semibold">
+                    <h3 className="text-3xl font-semibold">
                         No votes? No problem!
                     </h3>
-                    <p>Select an option below</p>
+                    <p className="text-[18px]">Select an option below</p>
                 </div>
 
                 <div className="flex justify-between mt-4">
@@ -59,7 +59,7 @@ const BuyVoteBtn = ({ numVotes, isSelected, setIsSelected }) => {
             shadow-md flex items-center justify-center text-center text-lg hover:shadow-xl
             ${
                 isSelected
-                    ? "bg-primary text-white hover:bg-primary-light"
+                    ? "bg-secondary hover:bg-secondary text-black hover:bg-primary-light"
                     : "bg-offWhite hover:bg-primary"
             }
             `}

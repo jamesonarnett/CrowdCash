@@ -2,13 +2,15 @@ import { Link, Head } from "@inertiajs/react";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import SkyDollars from "../../../public/images/skyDollars.png";
 import SubmitBtn from "@/Components/buttons/SubmitBtn";
+import { VscWorkspaceUnknown } from "react-icons/vsc";
+import { GiArcheryTarget } from "react-icons/gi";
 
 export default function Welcome({ auth }) {
     return (
         <>
             <Head title="Vote" />
             <div className="min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
-                <div className="p-6 text-right bg-myWhite flex items-center justify-between border-b-2 border-black fixed w-[100%]">
+                <div className="p-6 text-right bg-white flex items-center justify-between border-b-2 border-white fixed w-[100%]">
                     <div className="flex flex-col md:flex-row items-center w-full justify-between">
                         <div className="flex items-center">
                             <ApplicationLogo className="!max-w-12 !max-h-10" />
@@ -27,7 +29,7 @@ export default function Welcome({ auth }) {
                                         href={route("login")}
                                         className="font-semibold text-black hover:text-primary focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                                     >
-                                        Log in
+                                        Login
                                     </Link>
 
                                     <Link
@@ -42,7 +44,7 @@ export default function Welcome({ auth }) {
                     </div>
                 </div>
 
-                <div className="bg-gradient-landing min-h-screen flex flex-col">
+                <div className="bg-white min-h-screen flex flex-col">
                     <section
                         className="mt-[150px] md:mt-[90px] p-8 text-center text-black"
                         style={{
@@ -54,12 +56,12 @@ export default function Welcome({ auth }) {
                     >
                         <div className="w-full flex justify-center">
                             <div
-                                className=" font-bold p-5 rounded-md w-full md:w-1/2"
+                                className="font-bold p-5 rounded-lg w-full md:w-1/2 shadow-lg"
                                 style={{
-                                    backgroundColor: "rgba(102,199,244, 0.95)",
+                                    backgroundColor: "rgba(255,183,77, .85)",
                                 }}
                             >
-                                <h1 className="text-4xl font-extrabold">
+                                <h1 className="text-4xl">
                                     Your Platform for Making a Difference
                                 </h1>
                                 <p className="mt-4 text-xl">
@@ -78,12 +80,16 @@ export default function Welcome({ auth }) {
                             </div>
                         </div>
                     </section>
-                    <section className="p-8 text-black">
-                        <h2 className="text-2xl font-semibold mb-4">
+                    <section className="p-8 min-h-1/2 text-black border-t-2 border-white">
+                        <h2 className="text-3xl font-semibold mb-4 flex items-center">
                             How It Works
+                            <VscWorkspaceUnknown
+                                className="inline-block ml-2 text-3xl"
+                                fill="#66C7F4"
+                            />
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                            <div className="p-4 border border-black rounded-lg">
+                        <div className="text-[18px] font-semibold">
+                            <div className="p-4 border-[2px] bg-orange-300 border-orange-300 rounded-lg shadow-lg my-5">
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor
@@ -107,7 +113,7 @@ export default function Welcome({ auth }) {
                                     orci eu lobortis elementum.
                                 </p>
                             </div>
-                            <div className="p-4 border border-black rounded-lg">
+                            <div className="p-4 border-[2px] bg-orange-300 border-orange-300 rounded-lg shadow-lg my-5">
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor
@@ -131,7 +137,7 @@ export default function Welcome({ auth }) {
                                     orci eu lobortis elementum.
                                 </p>
                             </div>
-                            <div className="p-4 border border-black rounded-lg">
+                            <div className="p-4 border-[2px] bg-orange-300 border-orange-300 rounded-lg shadow-lg my-5">
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor
@@ -157,17 +163,18 @@ export default function Welcome({ auth }) {
                             </div>
                         </div>
                     </section>
-                    <section className="p-8 text-black">
-                        <h2 className="text-2xl font-semibold mb-4">
+                    <section className="p-8 min-h-[300px] text-white bg-primary border-t-2 border-white">
+                        <h2 className="text-3xl font-bold mb-4 flex items-center">
                             Our Mission
+                            <GiArcheryTarget className="ml-3" fill="#FFFFFF" />
                         </h2>
-                        <p>
+                        <p className="text-[18px] font-semibold">
                             We believe in the power of people helping people.
                             Our platform enables individuals to receive support
                             from a caring community.
                         </p>
                     </section>
-                    <footer className="p-4 text-center text-black">
+                    <footer className="p-4 text-center bg-white text-black">
                         <a
                             href="https://ajameson.dev"
                             className="font-bold"
