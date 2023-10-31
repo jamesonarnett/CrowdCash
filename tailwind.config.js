@@ -20,6 +20,7 @@ export default {
                 quaternary: "#FF1053",
                 myWhite: "#FFFFFF", // meh, maybe not
                 offWhite: "#F0F0F0",
+                orange: "#FFB74D",
             },
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],

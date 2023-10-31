@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { MdCancel } from "react-icons/md";
 import Modal from "../Modal";
 import ToolTip from "../inputs/ToolTip";
@@ -7,14 +7,35 @@ import CreditCardForm from "../inputs/CCForm";
 const BuyVotesModal = ({ show, setShowBuyVotesModal }) => {
     const [selectedButton, setSelectedButton] = useState(null);
     const priceOptions = [1, 5, 10, 25];
+    const modalRef = useRef();
 
     const closeModal = () => {
         setShowBuyVotesModal(false);
     };
 
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (
+                modalRef.current &&
+                !modalRef.current.contains(event.target) &&
+                show
+            ) {
+                setShowBuyVotesModal(false);
+            }
+        }
+        document.addEventListener("click", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("click", handleClickOutside);
+        };
+    }, [show]);
+
     return (
         <Modal show={show} maxWidth="2xl" closeable={false}>
-            <div className="flex flex-col w-full min-h-[200px] px-3 py-7 mb-5">
+            <div
+                ref={modalRef}
+                className="flex flex-col w-full min-h-[200px] px-3 py-7 mb-5"
+            >
                 <div
                     className="cursor-pointer flex w-full justify-end"
                     onClick={closeModal}

@@ -76,11 +76,21 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
         >
             <Link href={route("post.slug", { slug: post.slug })}>
                 {post && (
-                    <div className="p-2 rounded-md bg-teal-300">
-                        {post.user?.name}
+                    <div className="p-2 bg-offWhite rounded-md">
+                        <div className="pr-3 flex">
+                            <img
+                                src={"https://via.placeholder.com/150"}
+                                alt="user"
+                                className="w-16 h-16 rounded-full"
+                            />
+
+                            <p className="mx-3 -mt-[1px] font-semibold text-lg">
+                                {post.user?.name}
+                            </p>
+                        </div>
                         <br />
-                        {post.title}
-                        <br />
+
+                        <p className="text-lg font-semibold">{post.title}</p>
                         {post.content}
                     </div>
                 )}

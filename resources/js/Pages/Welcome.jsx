@@ -89,7 +89,7 @@ export default function Welcome({ auth }) {
                             />
                         </h2>
                         <div className="text-[18px] font-semibold">
-                            <div className="p-4 border-[2px] bg-orange-300 border-orange-300 rounded-lg shadow-lg my-5">
+                            <div className="p-4 border-[2px] bg-orange rounded-lg shadow-lg my-5">
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor
@@ -113,7 +113,7 @@ export default function Welcome({ auth }) {
                                     orci eu lobortis elementum.
                                 </p>
                             </div>
-                            <div className="p-4 border-[2px] bg-orange-300 border-orange-300 rounded-lg shadow-lg my-5">
+                            <div className="p-4 border-[2px] bg-orange rounded-lg shadow-lg my-5">
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor
@@ -137,7 +137,7 @@ export default function Welcome({ auth }) {
                                     orci eu lobortis elementum.
                                 </p>
                             </div>
-                            <div className="p-4 border-[2px] bg-orange-300 border-orange-300 rounded-lg shadow-lg my-5">
+                            <div className="p-4 border-[2px] bg-orange rounded-lg shadow-lg my-5">
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor
