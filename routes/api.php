@@ -1,11 +1,12 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BuyVotesController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\CommentController;
 use App\Http\Controllers\VoteController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 /**
  * Post routes
  */
@@ -41,12 +41,10 @@ Route::put('/post/{id}', [PostController::class, 'update']);
 
 Route::delete('/post/{id}', [PostController::class, 'destroy']);
 
-
 /**
  * User routes
  */
 Route::get('/user/{id}', [UserController::class, 'show']);
-
 
 /**
  * Comment routes
@@ -61,7 +59,6 @@ Route::put('/comment/{id}', [CommentController::class, 'update']);
 
 Route::delete('/comment/{id}', [CommentController::class, 'destroy']);
 
-
 /**
  * Vote routes
  */
@@ -70,3 +67,5 @@ Route::get('/vote', [VoteController::class, 'index']);
 Route::post('/vote', [VoteController::class, 'store']);
 
 Route::delete('/vote/{id}', [VoteController::class, 'destroy']);
+
+Route::post('/buy-votes', [BuyVotesController::class, 'index']);

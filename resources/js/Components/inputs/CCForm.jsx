@@ -1,8 +1,10 @@
 import React, { useState, useRef } from "react";
 import TextInput from "./TextInput";
 import SubmitBtn from "../buttons/SubmitBtn";
+import toast from "react-hot-toast";
+import axios from "axios";
 
-const CreditCardForm = () => {
+const CreditCardForm = ({ selectedButton, user }) => {
     const [isCardNumberValid, setIsCardNumberValid] = useState(true);
     const [isCardHolderValid, setIsCardHolderValid] = useState(true);
     const [isExpirationDateValid, setIsExpirationDateValid] = useState(true);
@@ -32,7 +34,7 @@ const CreditCardForm = () => {
 
     const handleCvvChange = () => {
         const cvv = cvvRef.current.value;
-        const cvvRegex = /^[0-9]{3}$/;
+        const cvvRegex = /^[0-9]{3,4}$/;
         setIsCvvValid(cvvRegex.test(cvv));
     };
 
@@ -43,7 +45,7 @@ const CreditCardForm = () => {
         setIsCvvValid(true);
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         clearValidation();
 
         // Validation checks
@@ -52,18 +54,33 @@ const CreditCardForm = () => {
         handleExpirationDateChange();
         handleCvvChange();
 
-        // Check if all inputs are valid
+        if (!selectedButton) {
+            toast.error("Please select a number of votes");
+            return;
+        }
+
         if (
             isCardNumberValid &&
             isCardHolderValid &&
             isExpirationDateValid &&
             isCvvValid
         ) {
-            // All inputs are valid; you can proceed with form submission
-            console.log("Form submitted");
-        } else {
-            // Some input(s) are invalid; you can display an error message or prevent submission
-            console.log("Form validation failed");
+            const res = await axios.post("/api/buy-votes", {
+                card_number: cardNumberRef.current.value,
+                card_holder: cardHolderRef.current.value,
+                expiration_date: expirationDateRef.current.value,
+                cvv: cvvRef.current.value,
+                num_votes: selectedButton,
+                user_id: user.id,
+            });
+
+            console.log(res);
+
+            if (res.data.success) {
+                toast.success(res.data.message);
+            } else {
+                toast.error(res.data.message);
+            }
         }
     };
 
@@ -161,7 +178,7 @@ const CreditCardForm = () => {
                     />
                     {!isCvvValid && (
                         <p className="text-red-500 text-sm mt-2">
-                            Invalid CVV (3 digits required)
+                            Invalid CVV (3 or 4 digits required)
                         </p>
                     )}
                 </div>

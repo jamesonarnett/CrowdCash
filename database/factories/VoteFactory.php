@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Vote;
-use App\Models\User;
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Vote;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class VoteFactory extends Factory

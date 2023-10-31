@@ -7,7 +7,9 @@
         "dev": "vite",
         "build:prod": "node --max_old_space_size=4096 node_modules/.bin/vite build",
         "build": "vite build",
-        "prettier": "prettier"
+        "prettier": "prettier",
+        "lint": "prettier --check . && eslint . --ext .js,.jsx,.ts,.tsx --fix",
+        "php:lint": "./vendor/bin/pint"
     },
     "devDependencies": {
         "@headlessui/react": "^1.4.2",

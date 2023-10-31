@@ -2,10 +2,10 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class PostTest extends TestCase
 {
@@ -22,13 +22,13 @@ class PostTest extends TestCase
     public function it_can_check_if_post_is_published()
     {
         $publishedPost = Post::factory()->create([
-            'is_published' => true, 
-            'user_id' => $this->user->id
+            'is_published' => true,
+            'user_id' => $this->user->id,
         ]);
 
         $unpublishedPost = Post::factory()->create([
-            'is_published' => false, 
-            'user_id' => $this->user->id
+            'is_published' => false,
+            'user_id' => $this->user->id,
         ]);
 
         $this->assertTrue($publishedPost->is_published);
@@ -39,13 +39,13 @@ class PostTest extends TestCase
     public function it_can_return_published_posts()
     {
         Post::factory()->count(3)->create([
-            'is_published' => true, 
-            'user_id' => $this->user->id
+            'is_published' => true,
+            'user_id' => $this->user->id,
         ]);
 
         Post::factory()->create([
-            'is_published' => false, 
-            'user_id' => $this->user->id
+            'is_published' => false,
+            'user_id' => $this->user->id,
         ]);
 
         $publishedPosts = Post::published()->get();

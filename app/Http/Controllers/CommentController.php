@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Comment;
+use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
@@ -12,12 +12,11 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index(Request $request)
     {
         try {
             $post = $request->post_id;
-            
+
             //get comments by post id sorted by latest
             $comments = Comment::with('user')->where('post_id', $post)
                 ->orderBy('created_at', 'desc')
@@ -25,23 +24,22 @@ class CommentController extends Controller
 
             return response()->json([
                 'success' => true,
-                'comments' => $comments
+                'comments' => $comments,
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Comments not found!' . $e->getMessage()
+                'message' => 'Comments not found!'.$e->getMessage(),
             ]);
         }
-    } 
+    }
 
     /**
      * Get comment by id
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
     public function show($id)
     {
         try {
@@ -50,12 +48,12 @@ class CommentController extends Controller
 
             return response()->json([
                 'success' => true,
-                'comment' => $comment
+                'comment' => $comment,
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Comment not found!' . $e->getMessage()
+                'message' => 'Comment not found!'.$e->getMessage(),
             ]);
         }
     }
@@ -63,7 +61,6 @@ class CommentController extends Controller
     /**
      * Create new comment
      *
-     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -73,7 +70,7 @@ class CommentController extends Controller
             $comment = Comment::create([
                 'post_id' => $request->post_id,
                 'user_id' => $request->user_id,
-                'content' => $request->comment
+                'content' => $request->comment,
             ]);
 
             return response()->json([
@@ -83,7 +80,7 @@ class CommentController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Comment not created!' . $e->getMessage()
+                'message' => 'Comment not created!'.$e->getMessage(),
             ]);
         }
     }
@@ -91,10 +88,9 @@ class CommentController extends Controller
     /**
      * Update comment by id
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
     public function update(Request $request, $id)
     {
         try {
@@ -104,12 +100,12 @@ class CommentController extends Controller
 
             return response()->json([
                 'success' => true,
-                'comment' => $comment
+                'comment' => $comment,
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Comment not updated!' . $e->getMessage()
+                'message' => 'Comment not updated!'.$e->getMessage(),
             ]);
         }
     }
@@ -117,25 +113,25 @@ class CommentController extends Controller
     /**
      * Delete comment by id
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-     public function destroy(Request $request, $id)
-     {
-         try {
-             //delete comment
-             $comment = Comment::find($request->id);
-             $comment->delete();
+    public function destroy(Request $request, $id)
+    {
+        try {
+            //delete comment
+            $comment = Comment::find($request->id);
+            $comment->delete();
 
-             return response()->json([
-                 'success' => true,
-                 'message' => 'Comment deleted successfully!'
-             ]);
-         } catch (\Exception $e) {
-             return response()->json([
-                 'success' => false,
-                 'message' => 'Comment not deleted!' . $e->getMessage()
-             ]);
-         }
+            return response()->json([
+                'success' => true,
+                'message' => 'Comment deleted successfully!',
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Comment not deleted!'.$e->getMessage(),
+            ]);
+        }
     }
 }

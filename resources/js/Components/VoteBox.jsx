@@ -53,7 +53,6 @@ const VoteBox = ({ post, user }) => {
             <BuyVotesModal
                 show={showBuyVotesModal}
                 setShowBuyVotesModal={setShowBuyVotesModal}
-                post={post}
                 user={user}
             />
         </div>

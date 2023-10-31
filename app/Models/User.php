@@ -42,7 +42,6 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-
     /**
      * Get all posts belonging to the user.
      */

@@ -42,13 +42,14 @@ Route::get('/create-post', function () {
     return Inertia::render('CreatePost');
 })->middleware(['auth', 'verified'])->name('post');
 
-
 Route::get('/edit-post/{id}', function ($id) {
     $post = Post::where('id', $id)
         ->with('user')
         ->first();
 
-    if ($post) return Inertia::render('EditPost', ['post' => $post]);
+    if ($post) {
+        return Inertia::render('EditPost', ['post' => $post]);
+    }
 
     return Inertia::render('EditPost', ['post' => null]);
 })->middleware(['auth', 'verified'])->name('post.edit');
@@ -60,7 +61,9 @@ Route::get('/post/{slug}', function ($slug) {
         ->with('votes')
         ->first();
 
-    if ($post) return Inertia::render('UserPost', ['post' => $post]);
+    if ($post) {
+        return Inertia::render('UserPost', ['post' => $post]);
+    }
 
     return Inertia::render('UserPost', ['post' => null]);
 })->middleware(['auth', 'verified'])->name('post.slug');

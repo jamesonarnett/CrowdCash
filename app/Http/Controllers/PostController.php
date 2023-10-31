@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        if(auth()->user()) {
+        if (auth()->user()) {
             return response()->json([
                 'posts' => Post::with('user')
                     ->with('comments')
                     ->with('votes')
                     ->orderBy('created_at', 'DESC')
-                    ->get()
+                    ->get(),
             ]);
         } else {
             return response()->json([
@@ -28,13 +29,14 @@ class PostController extends Controller
                     ->with('votes')
                     ->orderBy('created_at', 'DESC')
                     ->where('is_published', 1)
-                    ->get()
+                    ->get(),
             ]);
         }
     }
 
     /**
      * Display a listing of THIS user's posts.
+     *
      * @return \Illuminate\Http\Response
      */
     public function userIndex($id)
@@ -45,12 +47,13 @@ class PostController extends Controller
                 ->with('votes')
                 ->orderBy('created_at', 'DESC')
                 ->where('user_id', $id)
-                ->get()
+                ->get(),
         ]);
     }
 
     /**
      * Display a single post.
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -59,17 +62,17 @@ class PostController extends Controller
             'post' => Post::with('user')
                 ->with('comments')
                 ->with('votes')
-                ->find($id)
+                ->find($id),
         ]);
     }
 
-
     /**
      * Create a new post.
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         try {
             //create slug from request title
             $slug = str_replace(' ', '-', strtolower($request->title));
@@ -80,22 +83,23 @@ class PostController extends Controller
                 'title' => $request->title,
                 'slug' => $slug,
                 'content' => $request->content,
-                'is_published' => 1
+                'is_published' => 1,
             ]);
 
             return response()->json([
                 'post' => $post,
-                'success' => true
+                'success' => true,
             ]);
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Post not created!' . $e->getMessage()
+                'message' => 'Post not created!'.$e->getMessage(),
             ]);
         }
     }
 
     /**
      * Update a post.
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -113,22 +117,23 @@ class PostController extends Controller
                 'title' => $request->title,
                 'slug' => $slug,
                 'content' => $request->content,
-                'is_published' => 1
+                'is_published' => 1,
             ]);
 
             return response()->json([
                 'post' => $post,
-                'success' => true
+                'success' => true,
             ]);
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Post not updated!' . $e->getMessage()
+                'message' => 'Post not updated!'.$e->getMessage(),
             ]);
         }
     }
 
     /**
      * Delete a post.
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -143,12 +148,12 @@ class PostController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Post deleted successfully!'
+                'message' => 'Post deleted successfully!',
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Post not deleted!' . $e->getMessage()
+                'message' => 'Post not deleted!'.$e->getMessage(),
             ]);
         }
     }

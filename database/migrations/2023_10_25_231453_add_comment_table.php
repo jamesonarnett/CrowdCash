@@ -21,7 +21,6 @@ return new class extends Migration
 
             $table->foreign('post_id')->references('id')->on('user_posts');
             $table->foreign('user_id')->references('id')->on('users');
-            
 
         });
     }

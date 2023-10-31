@@ -4,7 +4,7 @@ import Modal from "../Modal";
 import ToolTip from "../inputs/ToolTip";
 import CreditCardForm from "../inputs/CCForm";
 
-const BuyVotesModal = ({ show, setShowBuyVotesModal }) => {
+const BuyVotesModal = ({ show, setShowBuyVotesModal, user }) => {
     const [selectedButton, setSelectedButton] = useState(null);
     const priceOptions = [1, 5, 10, 25];
     const modalRef = useRef();
@@ -52,6 +52,12 @@ const BuyVotesModal = ({ show, setShowBuyVotesModal }) => {
                     <p className="text-[18px]">Select an option below</p>
                 </div>
 
+                <small className="text-center text-red-500">
+                    This app is still being tested and is not actually accepting
+                    payments.
+                    <br />
+                    Please enter any "valid" credit card information to proceed.
+                </small>
                 <div className="flex justify-between mt-4">
                     {priceOptions.map((numVotes) => (
                         <BuyVoteBtn
@@ -64,7 +70,10 @@ const BuyVotesModal = ({ show, setShowBuyVotesModal }) => {
                 </div>
 
                 <div className="flex justify-center mt-4">
-                    <CreditCardForm />
+                    <CreditCardForm
+                        selectedButton={selectedButton}
+                        user={user}
+                    />
                 </div>
             </div>
         </Modal>
