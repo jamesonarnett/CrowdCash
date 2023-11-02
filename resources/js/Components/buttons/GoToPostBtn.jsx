@@ -10,8 +10,8 @@ const GoToPostBtn = ({ text }) => {
         >
             <button
                 className="bg-primary text-black px-6 py-3 rounded-full 
-                inline-block shadow-md hover:bg-myWhite hover:text-black transition duration-300 
-                ease-in-out hover:shadow-lg"
+                inline-block shadow-md hover:bg-secondary hover:text-black transition duration-300 
+                ease-in-out hover:shadow-lg text-[17px] font-semibold"
             >
                 {text}
             </button>

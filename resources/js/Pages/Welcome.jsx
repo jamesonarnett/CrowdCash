@@ -1,25 +1,75 @@
 import { Link, Head } from "@inertiajs/react";
+import React, { useEffect, useRef, useState } from "react";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import SkyDollars from "../../../public/images/skyDollars.png";
 import SubmitBtn from "@/Components/buttons/SubmitBtn";
+import SvgTrash from "@/Components/Trash/SvgTrash";
 import { VscWorkspaceUnknown } from "react-icons/vsc";
-import { GiArcheryTarget } from "react-icons/gi";
 
 export default function Welcome({ auth }) {
+    const [navBackground, setNavBackground] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [widthThreshold, setWidthThreshold] = useState(600);
+
+    const navRef = useRef();
+    navRef.current = navBackground;
+
+    const watchWindowListener = () => {
+        if (windowWidth < widthThreshold) {
+            setNavBackground(true);
+        } else {
+            setNavBackground(false);
+        }
+    };
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        watchWindowListener();
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, [windowWidth, widthThreshold]);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const show = window.scrollY > 100;
+            if (navRef.current !== show) {
+                setNavBackground(show);
+            }
+        };
+
+        document.addEventListener("scroll", handleScroll);
+        return () => {
+            document.removeEventListener("scroll", handleScroll);
+        };
+    });
     return (
         <>
             <Head title="Vote" />
-            <div className="min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
-                <div className="p-6 text-right bg-white flex items-center justify-between border-b-2 border-white fixed w-[100%]">
+            <div className="max-h-screen bg-primary">
+                <div
+                    ref={navRef}
+                    className={`p-3 text-right flex items-center justify-between fixed w-[100%] z-50
+                        ${
+                            navBackground
+                                ? "bg-white shadow-md border-b-2 border-black"
+                                : "bg-transparent"
+                        }`}
+                >
                     <div className="flex flex-col md:flex-row items-center w-full justify-between">
                         <div className="flex items-center">
                             <ApplicationLogo className="!max-w-12 !max-h-10" />
                         </div>
-                        <div className="flex my-5 md:m-0 text-xl">
+                        <div className="flex my-5 md:m-0 text-2xl">
                             {auth.user ? (
                                 <Link
                                     href={route("dashboard")}
-                                    className="font-semibold text-black hover:text-primary focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                                    className="font-semibold text-black hover:text-orange focus:outline focus:outline-2 focus:rounded-sm focus:outline-orange"
                                 >
                                     Dashboard
                                 </Link>
@@ -27,14 +77,14 @@ export default function Welcome({ auth }) {
                                 <>
                                     <Link
                                         href={route("login")}
-                                        className="font-semibold text-black hover:text-primary focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                                        className="font-semibold text-black hover:text-orange focus:outline focus:outline-2 focus:rounded-sm focus:outline-orange"
                                     >
                                         Login
                                     </Link>
 
                                     <Link
                                         href={route("register")}
-                                        className="ml-4 font-semibold text-black hover:text-primary focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                                        className="ml-4 font-semibold text-black hover:text-orange focus:outline focus:outline-2 focus:rounded-sm focus:outline-orange"
                                     >
                                         Register
                                     </Link>
@@ -44,9 +94,134 @@ export default function Welcome({ auth }) {
                     </div>
                 </div>
 
-                <div className="bg-white min-h-screen flex flex-col">
+                <div className="bg-white flex flex-col">
+                    <div className="custom-shape-divider-top-1698887276">
+                        <svg
+                            data-name="Layer 1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 1200 120"
+                            preserveAspectRatio="none"
+                        >
+                            <path
+                                d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+                                className="shape-fill"
+                            ></path>
+                        </svg>
+                    </div>
+
+                    <div className="w-full min-h-[200px] flex flex-col md:flex-row justify-between items-center bg-white">
+                        <div className="p-5 flex items-center justify-center text-center">
+                            <div className="p-5 flex flex-col justify-center items-center">
+                                <p className="text-center text-3xl font-semibold">
+                                    No matter the crisis
+                                    <br />
+                                    No matter the time
+                                    <br />
+                                    CrowdCash is here to help!
+                                </p>
+                                <SvgTrash />
+                            </div>
+                            <p className="mt-10 md:mt-0 flex flex-col text-3xl font-semibold">
+                                Help others in their time of need with just a
+                                click!
+                                <SubmitBtn
+                                    text="Get Started"
+                                    onSubmit={() => {
+                                        window.location.href =
+                                            route("register");
+                                    }}
+                                    className="mt-4 min-w-1/3 text-xl font-semibold whitespace-nowrap"
+                                />
+                            </p>
+                        </div>
+                    </div>
+
+                    <section className="bg-primary px-8 min-h-1/2 text-black border-t-2 border-white">
+                        <h2 className="mt-6 text-3xl font-semibold mb-4 flex items-center">
+                            How It Works
+                            <VscWorkspaceUnknown
+                                className="inline-block ml-2 text-3xl"
+                                fill="#66C7F4"
+                            />
+                        </h2>
+                        <div className="text-[18px] font-semibold">
+                            <div className="p-4 border-[2px] bg-white border-orange rounded-lg shadow-md shadow-orange mt-5">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.
+                                    Ut faucibus pulvinar elementum integer.
+                                    Tristique nulla aliquet enim tortor at
+                                    auctor urna nunc. Morbi non arcu risus quis
+                                    varius quam quisque id. Diam in arcu cursus
+                                    euismod quis. Sit amet aliquam id diam
+                                    maecenas ultricies mi. Id volutpat lacus
+                                    laoreet non curabitur. Ut diam quam nulla
+                                    porttitor massa id. Semper viverra nam
+                                    libero justo laoreet sit. Nam aliquam sem et
+                                    tortor consequat. Eleifend quam adipiscing
+                                    vitae proin sagittis nisl. Aliquet sagittis
+                                    id consectetur purus ut. Purus viverra
+                                    accumsan in nisl nisi. Urna neque viverra
+                                    justo nec ultrices dui. Nunc eget lorem
+                                    dolor sed viverra ipsum nunc aliquet
+                                    bibendum. Amet facilisis magna etiam tempor
+                                    orci eu lobortis elementum.
+                                </p>
+                            </div>
+                            <div className="p-4 border-[2px] bg-white border-orange rounded-lg shadow-md shadow-orange my-5">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.
+                                    Ut faucibus pulvinar elementum integer.
+                                    Tristique nulla aliquet enim tortor at
+                                    auctor urna nunc. Morbi non arcu risus quis
+                                    varius quam quisque id. Diam in arcu cursus
+                                    euismod quis. Sit amet aliquam id diam
+                                    maecenas ultricies mi. Id volutpat lacus
+                                    laoreet non curabitur. Ut diam quam nulla
+                                    porttitor massa id. Semper viverra nam
+                                    libero justo laoreet sit. Nam aliquam sem et
+                                    tortor consequat. Eleifend quam adipiscing
+                                    vitae proin sagittis nisl. Aliquet sagittis
+                                    id consectetur purus ut. Purus viverra
+                                    accumsan in nisl nisi. Urna neque viverra
+                                    justo nec ultrices dui. Nunc eget lorem
+                                    dolor sed viverra ipsum nunc aliquet
+                                    bibendum. Amet facilisis magna etiam tempor
+                                    orci eu lobortis elementum.
+                                </p>
+                            </div>
+                            <div className="p-4 border-[2px] bg-white border-orange rounded-lg shadow-md shadow-orange my-5">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.
+                                    Ut faucibus pulvinar elementum integer.
+                                    Tristique nulla aliquet enim tortor at
+                                    auctor urna nunc. Morbi non arcu risus quis
+                                    varius quam quisque id. Diam in arcu cursus
+                                    euismod quis. Sit amet aliquam id diam
+                                    maecenas ultricies mi. Id volutpat lacus
+                                    laoreet non curabitur. Ut diam quam nulla
+                                    porttitor massa id. Semper viverra nam
+                                    libero justo laoreet sit. Nam aliquam sem et
+                                    tortor consequat. Eleifend quam adipiscing
+                                    vitae proin sagittis nisl. Aliquet sagittis
+                                    id consectetur purus ut. Purus viverra
+                                    accumsan in nisl nisi. Urna neque viverra
+                                    justo nec ultrices dui. Nunc eget lorem
+                                    dolor sed viverra ipsum nunc aliquet
+                                    bibendum. Amet facilisis magna etiam tempor
+                                    orci eu lobortis elementum.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
                     <section
-                        className="mt-[150px] md:mt-[90px] p-8 text-center text-black"
+                        className="p-8 text-center text-black"
                         style={{
                             background: `url(${SkyDollars})`,
                             backgroundSize: "100% 100%",
@@ -80,128 +255,8 @@ export default function Welcome({ auth }) {
                             </div>
                         </div>
                     </section>
-                    <section className="p-8 min-h-1/2 text-black border-t-2 border-white">
-                        <h2 className="text-3xl font-semibold mb-4 flex items-center">
-                            How It Works
-                            <VscWorkspaceUnknown
-                                className="inline-block ml-2 text-3xl"
-                                fill="#66C7F4"
-                            />
-                        </h2>
-                        <div className="text-[18px] font-semibold">
-                            <div className="p-4 border-[2px] bg-orange rounded-lg shadow-lg my-5">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                    Ut faucibus pulvinar elementum integer.
-                                    Tristique nulla aliquet enim tortor at
-                                    auctor urna nunc. Morbi non arcu risus quis
-                                    varius quam quisque id. Diam in arcu cursus
-                                    euismod quis. Sit amet aliquam id diam
-                                    maecenas ultricies mi. Id volutpat lacus
-                                    laoreet non curabitur. Ut diam quam nulla
-                                    porttitor massa id. Semper viverra nam
-                                    libero justo laoreet sit. Nam aliquam sem et
-                                    tortor consequat. Eleifend quam adipiscing
-                                    vitae proin sagittis nisl. Aliquet sagittis
-                                    id consectetur purus ut. Purus viverra
-                                    accumsan in nisl nisi. Urna neque viverra
-                                    justo nec ultrices dui. Nunc eget lorem
-                                    dolor sed viverra ipsum nunc aliquet
-                                    bibendum. Amet facilisis magna etiam tempor
-                                    orci eu lobortis elementum.
-                                </p>
-                            </div>
-                            <div className="p-4 border-[2px] bg-orange rounded-lg shadow-lg my-5">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                    Ut faucibus pulvinar elementum integer.
-                                    Tristique nulla aliquet enim tortor at
-                                    auctor urna nunc. Morbi non arcu risus quis
-                                    varius quam quisque id. Diam in arcu cursus
-                                    euismod quis. Sit amet aliquam id diam
-                                    maecenas ultricies mi. Id volutpat lacus
-                                    laoreet non curabitur. Ut diam quam nulla
-                                    porttitor massa id. Semper viverra nam
-                                    libero justo laoreet sit. Nam aliquam sem et
-                                    tortor consequat. Eleifend quam adipiscing
-                                    vitae proin sagittis nisl. Aliquet sagittis
-                                    id consectetur purus ut. Purus viverra
-                                    accumsan in nisl nisi. Urna neque viverra
-                                    justo nec ultrices dui. Nunc eget lorem
-                                    dolor sed viverra ipsum nunc aliquet
-                                    bibendum. Amet facilisis magna etiam tempor
-                                    orci eu lobortis elementum.
-                                </p>
-                            </div>
-                            <div className="p-4 border-[2px] bg-orange rounded-lg shadow-lg my-5">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                    Ut faucibus pulvinar elementum integer.
-                                    Tristique nulla aliquet enim tortor at
-                                    auctor urna nunc. Morbi non arcu risus quis
-                                    varius quam quisque id. Diam in arcu cursus
-                                    euismod quis. Sit amet aliquam id diam
-                                    maecenas ultricies mi. Id volutpat lacus
-                                    laoreet non curabitur. Ut diam quam nulla
-                                    porttitor massa id. Semper viverra nam
-                                    libero justo laoreet sit. Nam aliquam sem et
-                                    tortor consequat. Eleifend quam adipiscing
-                                    vitae proin sagittis nisl. Aliquet sagittis
-                                    id consectetur purus ut. Purus viverra
-                                    accumsan in nisl nisi. Urna neque viverra
-                                    justo nec ultrices dui. Nunc eget lorem
-                                    dolor sed viverra ipsum nunc aliquet
-                                    bibendum. Amet facilisis magna etiam tempor
-                                    orci eu lobortis elementum.
-                                </p>
-                            </div>
-                        </div>
-                    </section>
-                    <section className="p-8 min-h-[300px] text-white bg-primary border-t-2 border-white">
-                        <h2 className="text-3xl font-bold mb-4 flex items-center">
-                            Our Mission
-                            <GiArcheryTarget className="ml-3" fill="#FFFFFF" />
-                        </h2>
-                        <p className="text-[18px] font-semibold">
-                            We believe in the power of people helping people.
-                            Our platform enables individuals to receive support
-                            from a caring community.
-                        </p>
-                    </section>
-                    <footer className="p-4 text-center bg-white text-black">
-                        <a
-                            href="https://ajameson.dev"
-                            className="font-bold"
-                            target="_blank"
-                        >
-                            <p>
-                                Made with{" "}
-                                <span role="img" aria-label="heart">
-                                    ❤️
-                                </span>{" "}
-                                by the "Team"
-                            </p>
-                        </a>
-                    </footer>
                 </div>
             </div>
-
-            <style>{`
-                .bg-dots-darker {
-                    background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='https://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
-                }
-                @media (prefers-color-scheme: dark) {
-                    .dark\\:bg-dots-lighter {
-                        background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='https://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(255,255,255,0.07)'/%3E%3C/svg%3E");
-                    }
-                }
-            `}</style>
         </>
     );
 }

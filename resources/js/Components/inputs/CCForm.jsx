@@ -82,7 +82,7 @@ const CreditCardForm = ({ selectedButton, user, closeModal }) => {
                 setTimeout(() => {
                     setIsLoading(false);
                     closeModal();
-                }, 500);
+                }, 1000);
             } else {
                 setIsLoading(false);
                 toast.error(res.data.message);

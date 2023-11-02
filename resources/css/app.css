@@ -16,3 +16,38 @@
         opacity: 0.5;
     }
 }
+
+.custom-shape-divider-bottom-1698887361 {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-bottom-1698887361 svg {
+    position: relative;
+    display: block;
+    width: calc(153% + 1.3px);
+    height: 98px;
+}
+
+.custom-shape-divider-top-1698887276 {
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-top-1698887276 svg {
+    position: relative;
+    display: block;
+    width: calc(153% + 1.3px);
+    height: 100px;
+}
+
+.shape-fill {
+    fill: #66c7f4;
+}
