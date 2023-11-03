@@ -79,7 +79,7 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
                     <div className="p-2 bg-offWhite rounded-md">
                         <div className="pr-3 flex">
                             <img
-                                src={"https://via.placeholder.com/150"}
+                                src={user.file_path ?? "/images/default.png"}
                                 alt="user"
                                 className="w-16 h-16 rounded-full"
                             />
@@ -91,7 +91,26 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
                         <br />
 
                         <p className="text-lg font-semibold">{post.title}</p>
-                        {post.content}
+                        {post.file_type === "image" && (
+                            <img
+                                src={post.file_path}
+                                alt="post"
+                                className="w-full h-96 object-cotain"
+                            />
+                        )}
+
+                        {post.fileType === "video" && (
+                            <video
+                                src={post.file_path}
+                                alt="post"
+                                className="w-full h-96 object-cotain"
+                                controls
+                            />
+                        )}
+
+                        <p className="mt-3 border-t-2 border-gray-200 text-lg">
+                            {post.content}
+                        </p>
                     </div>
                 )}
             </Link>

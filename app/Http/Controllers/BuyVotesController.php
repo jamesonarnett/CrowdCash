@@ -62,7 +62,7 @@ class BuyVotesController extends Controller
         $ccNumber = preg_replace('/\D/', '', $ccNumber);
 
         // Check if the credit card number is 16 digits long and passes the Luhn algorithm
-        if (strlen($ccNumber) !== 16 || !$this->isValidLuhn($ccNumber)) {
+        if (strlen($ccNumber) !== 16 || ! $this->isValidLuhn($ccNumber)) {
             return false;
         }
 
@@ -78,7 +78,7 @@ class BuyVotesController extends Controller
         }
 
         // Check if the CVV is a 3 or 4-digit number (depending on the card type)
-        if (!$this->isValidCVV($ccNumber, $cvv)) {
+        if (! $this->isValidCVV($ccNumber, $cvv)) {
             return false;
         }
 

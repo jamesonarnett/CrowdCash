@@ -69,3 +69,10 @@ Route::post('/vote', [VoteController::class, 'store']);
 Route::delete('/vote/{id}', [VoteController::class, 'destroy']);
 
 Route::post('/buy-votes', [BuyVotesController::class, 'index']);
+
+/**
+ * Upload Routes
+ */
+Route::post('/upload', [PostController::class, 'saveMedia']);
+
+Route::post('/upload-profile-image', [UserController::class, 'saveProfileImage']);

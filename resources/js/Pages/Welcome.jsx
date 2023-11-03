@@ -8,36 +8,13 @@ import { VscWorkspaceUnknown } from "react-icons/vsc";
 
 export default function Welcome({ auth }) {
     const [navBackground, setNavBackground] = useState(false);
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    const [widthThreshold, setWidthThreshold] = useState(600);
 
     const navRef = useRef();
     navRef.current = navBackground;
 
-    const watchWindowListener = () => {
-        if (windowWidth < widthThreshold) {
-            setNavBackground(true);
-        } else {
-            setNavBackground(false);
-        }
-    };
-
-    useEffect(() => {
-        const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-        };
-
-        watchWindowListener();
-        window.addEventListener("resize", handleResize);
-
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, [windowWidth, widthThreshold]);
-
     useEffect(() => {
         const handleScroll = () => {
-            const show = window.scrollY > 100;
+            const show = window.scrollY > 50;
             if (navRef.current !== show) {
                 setNavBackground(show);
             }
@@ -48,6 +25,7 @@ export default function Welcome({ auth }) {
             document.removeEventListener("scroll", handleScroll);
         };
     });
+
     return (
         <>
             <Head title="Vote" />
@@ -69,7 +47,7 @@ export default function Welcome({ auth }) {
                             {auth.user ? (
                                 <Link
                                     href={route("dashboard")}
-                                    className="font-semibold text-black hover:text-orange focus:outline focus:outline-2 focus:rounded-sm focus:outline-orange"
+                                    className="font-semibold text-black focus:outline focus:outline-2 focus:rounded-sm focus:outline-black"
                                 >
                                     Dashboard
                                 </Link>
@@ -77,14 +55,14 @@ export default function Welcome({ auth }) {
                                 <>
                                     <Link
                                         href={route("login")}
-                                        className="font-semibold text-black hover:text-orange focus:outline focus:outline-2 focus:rounded-sm focus:outline-orange"
+                                        className="font-semibold text-black focus:outline focus:outline-2 focus:rounded-sm focus:outline-black"
                                     >
                                         Login
                                     </Link>
 
                                     <Link
                                         href={route("register")}
-                                        className="ml-4 font-semibold text-black hover:text-orange focus:outline focus:outline-2 focus:rounded-sm focus:outline-orange"
+                                        className="ml-4 font-semibold text-black focus:outline focus:outline-2 focus:rounded-sm focus:outline-black"
                                     >
                                         Register
                                     </Link>
@@ -94,7 +72,7 @@ export default function Welcome({ auth }) {
                     </div>
                 </div>
 
-                <div className="bg-white flex flex-col">
+                <div className="bg-orange flex flex-col">
                     <div className="custom-shape-divider-top-1698887276">
                         <svg
                             data-name="Layer 1"
@@ -109,8 +87,8 @@ export default function Welcome({ auth }) {
                         </svg>
                     </div>
 
-                    <div className="w-full min-h-[200px] flex flex-col md:flex-row justify-between items-center bg-white">
-                        <div className="p-5 flex items-center justify-center text-center">
+                    <div className="w-full min-h-[200px] justify-center items-center bg-white">
+                        <div className="p-5 flex flex-col md:flex-row items-center justify-center text-center">
                             <div className="p-5 flex flex-col justify-center items-center">
                                 <p className="text-center text-3xl font-semibold">
                                     No matter the crisis

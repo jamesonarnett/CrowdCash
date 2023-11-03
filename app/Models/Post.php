@@ -18,6 +18,8 @@ class Post extends Model
         'image',
         'is_published',
         'user_id',
+        'file_path',
+        'file_type',
     ];
 
     protected $casts = [
