@@ -50,4 +50,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    /**
+     * Get the profile image path or stock
+     */
+    public function getProfileImagePathAttribute()
+    {
+        if ($this->file_path) {
+            return $this->file_path;
+        } else {
+            return env('APP_URL') . 'no_user.png';
+        }
+    }
 }

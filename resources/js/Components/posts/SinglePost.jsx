@@ -79,7 +79,9 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
                     <div className="p-2 bg-offWhite rounded-md">
                         <div className="pr-3 flex">
                             <img
-                                src={user.file_path ?? "/images/default.png"}
+                                src={
+                                    post.user.file_path ?? "/images/default.png"
+                                }
                                 alt="user"
                                 className="w-16 h-16 rounded-full"
                             />
