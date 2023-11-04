@@ -26,6 +26,8 @@ class Post extends Model
         'is_published' => 'boolean',
     ];
 
+    protected $attributes = ['votes_to_goal' => 10];
+
     public function user()
     {
         return $this->belongsTo(User::class);

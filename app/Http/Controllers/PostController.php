@@ -25,18 +25,21 @@ class PostController extends Controller
             ]);
         } else {
             return response()->json([
-                'posts' => Post::with('user')
+                'posts' => (Post::with('user')
                     ->with('comments')
                     ->with('votes')
+                    ->withVotesCount()
                     ->orderBy('created_at', 'DESC')
-                    ->where('is_published', 1)
-                    ->get(),
+                    ->published()
+                    ->get())->filter(function ($post) {
+                        return $post->votes_count < $post->votes_to_goal;
+                    }),
             ]);
         }
     }
 
     /**
-     * Display a listing of THIS user's posts.
+     * Display a listing of JWT user's posts.
      *
      * @return \Illuminate\Http\Response
      */

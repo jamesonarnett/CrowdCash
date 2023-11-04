@@ -60,6 +60,7 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
     };
 
     useEffect(() => {
+        console.log("post", post);
         if (
             (window.location.pathname === "/posts" &&
                 user.id === post.user_id) ||
@@ -71,58 +72,60 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
 
     return (
         <div
-            className="border-black border-2 p-3 bg-white my-5 rounded-md 
+            className="p-3 bg-white my-5 rounded-md 
             shadow-lg m-sm-1 mx-2 md:mx-0"
         >
-            <Link href={route("post.slug", { slug: post.slug })}>
-                {post && (
-                    <div className="p-2 bg-offWhite rounded-md">
-                        <div className="pr-3 flex">
-                            <img
-                                src={
-                                    post.user.file_path ?? "/images/default.png"
-                                }
-                                alt="user"
-                                className="w-16 h-16 rounded-full"
-                            />
+            {post && (
+                <div className="p-2 bg-offWhite rounded-md">
+                    <div className="pr-3 flex">
+                        <img
+                            src={post.user.file_path ?? "/images/default.png"}
+                            alt="user"
+                            className="w-16 h-16 rounded-full"
+                        />
 
-                            <p className="mx-3 -mt-[1px] font-semibold text-lg">
-                                {post.user?.name}
-                            </p>
+                        <p className="mx-3 -mt-[1px] font-semibold text-lg">
+                            {post.user?.name}
+                        </p>
+                    </div>
+                    <br />
+
+                    <Link href={route("post.slug", { slug: post.slug })}>
+                        <p className="text-xl font-semibold mb-3">
+                            {post.title}
+                        </p>
+                        <div className="mx-auto max-w-[500px] max-h-[500px] overflow-hidden">
+                            {post.file_type === "image" && (
+                                <img
+                                    src={post.file_path}
+                                    alt="post"
+                                    className="w-full h-full object-contain"
+                                />
+                            )}
+
+                            {post.fileType === "video" && (
+                                <video
+                                    src={post.file_path}
+                                    alt="post"
+                                    className="w-full h-full object-contain"
+                                    controls
+                                />
+                            )}
                         </div>
-                        <br />
-
-                        <p className="text-lg font-semibold">{post.title}</p>
-                        {post.file_type === "image" && (
-                            <img
-                                src={post.file_path}
-                                alt="post"
-                                className="w-full h-96 object-cotain"
-                            />
-                        )}
-
-                        {post.fileType === "video" && (
-                            <video
-                                src={post.file_path}
-                                alt="post"
-                                className="w-full h-96 object-cotain"
-                                controls
-                            />
-                        )}
 
                         <p className="mt-3 border-t-2 border-gray-200 text-lg">
                             {post.content}
                         </p>
-                    </div>
-                )}
-            </Link>
+                    </Link>
+                </div>
+            )}
 
             <div className="flex w-full mt-1">
                 <div className="w-full">
                     <VoteBox post={post} user={user} />
                 </div>
 
-                <div className="flex justify-end">
+                <div className="flex justify-end items-center">
                     {!toggleComments && (
                         <ToolTip text="Add Comment">
                             <button

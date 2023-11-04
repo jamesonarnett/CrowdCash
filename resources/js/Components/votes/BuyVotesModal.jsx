@@ -53,7 +53,8 @@ const BuyVotesModal = ({ show, setShowBuyVotesModal, user }) => {
                 </div>
 
                 <small className="text-center text-red-500">
-                    This app is still being tested and is not actually accepting
+                    This app is under review and is{" "}
+                    <span className="font-semibold">NOT</span> accepting
                     payments.
                     <br />
                     Please enter any "valid" credit card information to proceed.
@@ -90,7 +91,7 @@ const BuyVoteBtn = ({ numVotes, isSelected, setIsSelected }) => {
             shadow-md flex items-center justify-center text-center text-lg hover:shadow-xl
             ${
                 isSelected
-                    ? "bg-secondary hover:bg-secondary text-black hover:bg-primary-light"
+                    ? "bg-orange hover:bg-orange text-black hover:bg-primary-light"
                     : "bg-offWhite hover:bg-primary"
             }
             `}

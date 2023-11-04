@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import SkyDollars from "../../../public/images/skyDollars.png";
 import SubmitBtn from "@/Components/buttons/SubmitBtn";
-import SvgTrash from "@/Components/Trash/SvgTrash";
+import SvgTrash from "@/Components/trash/SvgTrash";
 import { VscWorkspaceUnknown } from "react-icons/vsc";
 
 export default function Welcome({ auth }) {
@@ -95,7 +95,7 @@ export default function Welcome({ auth }) {
                                     <br />
                                     No matter the time
                                     <br />
-                                    CrowdCash is here to help!
+                                    CrowdCash is here to help
                                 </p>
                                 <SvgTrash />
                             </div>
@@ -103,12 +103,12 @@ export default function Welcome({ auth }) {
                                 Help others in their time of need with just a
                                 click!
                                 <SubmitBtn
-                                    text="Get Started"
+                                    text="Make your first post now"
                                     onSubmit={() => {
                                         window.location.href =
                                             route("register");
                                     }}
-                                    className="mt-4 min-w-1/3 text-xl font-semibold whitespace-nowrap"
+                                    className="mt-4 min-w-1/3 text-xl font-semibold whitespace-nowrap hover:bg-orange"
                                 />
                             </p>
                         </div>
@@ -119,7 +119,7 @@ export default function Welcome({ auth }) {
                             How It Works
                             <VscWorkspaceUnknown
                                 className="inline-block ml-2 text-3xl"
-                                fill="#66C7F4"
+                                fill="#000000"
                             />
                         </h2>
                         <div className="text-[18px] font-semibold">

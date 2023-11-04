@@ -118,21 +118,21 @@ export default function CreatePost({ auth }) {
 
             <div className="py-4 flex justify-center align-center">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="flex flex-col md:flex-row w-100 justify-center my-10">
+                    <div className="flex flex-col md:flex-row w-100 justify-center my-10 bg-white p-5 rounded-md">
                         <div>
                             <div>
                                 <p className="text-2xl font-bold">
                                     Upload Content
                                 </p>
                                 <p className="text-md mt-1">
-                                    Post to find the assistance you need!
+                                    Post now to find the assistance you need!
                                 </p>
                             </div>
                             <div
                                 className={`border-dashed rounded-xl 
                                     border-4 border-gray-200 flex flex-col justify-center 
                                     items-center outline-none mt-10 w-[350px] h-[460px] 
-                                    p-10 cursor-pointer hover:border-secondary hover:bg-gray-100
+                                    p-10 cursor-pointer hover:border-orange hover:bg-gray-100
                                     ${
                                         isUploading
                                             ? "bg-gray-100 border-secondary custom-pulse"
@@ -175,10 +175,9 @@ export default function CreatePost({ auth }) {
                                                         </p>
                                                     </div>
                                                     <p className="text-gray-400 text-center mt-10 text-sm leading-10">
-                                                        MP4, WebM, PNG, JPG{" "}
+                                                        MP4, WebM, PNG, JPG, GIF{" "}
                                                         <br />
                                                         720P or higher <br />
-                                                        Up to 10 minutes <br />
                                                         Less than 2GB
                                                     </p>
                                                     <p

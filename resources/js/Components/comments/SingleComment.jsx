@@ -38,7 +38,7 @@ const SingleComment = ({ comment, user, getComments }) => {
             <div className="flex w-full items-start">
                 <div className="pr-3">
                     <img
-                        src={"https://via.placeholder.com/150"}
+                        src={comment.user?.file_path}
                         alt="user"
                         className="w-10 h-10 rounded-full"
                     />

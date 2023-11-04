@@ -59,7 +59,7 @@ class User extends Authenticatable
         if ($this->file_path) {
             return $this->file_path;
         } else {
-            return env('APP_URL') . 'no_user.png';
+            return env('APP_URL').'no_user.png';
         }
     }
 }

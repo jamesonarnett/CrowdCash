@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/inputs/Dropdown";
 import NavLink from "@/Components/nav/NavLink";
 import ResponsiveNavLink from "@/Components/nav/ResponsiveNavLink";
 import BuyVotesModal from "../votes/BuyVotesModal";
-import SubmitBtn from "../buttons/SubmitBtn";
 import { Link } from "@inertiajs/react";
 
 const Navbar = ({ user }) => {
@@ -12,6 +11,12 @@ const Navbar = ({ user }) => {
         useState(false);
 
     const [showBuyVotesModal, setShowBuyVotesModal] = useState(false);
+    const [userVotes, setUserVotes] = useState(user?.votes_available);
+
+    useEffect(() => {
+        console.log("vote change", user);
+        setUserVotes(user?.votes_available);
+    });
 
     return (
         <nav className="bg-white border-b border-gray-100">
@@ -67,7 +72,9 @@ const Navbar = ({ user }) => {
                                     <span className="inline-flex rounded-md">
                                         <button
                                             type="button"
-                                            className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+                                            className="inline-flex items-center px-3 py-2 border border-transparent text-sm 
+                                            leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 
+                                            focus:outline-none transition ease-in-out duration-150"
                                         >
                                             {user.name}
 
@@ -84,6 +91,9 @@ const Navbar = ({ user }) => {
                                                 />
                                             </svg>
                                         </button>
+                                        <p className="text-gray-500 flex items-center text-sm">
+                                            You have {userVotes} votes!
+                                        </p>
                                     </span>
                                 </Dropdown.Trigger>
 
@@ -190,6 +200,7 @@ const Navbar = ({ user }) => {
                     <div className="px-4">
                         <div className="font-medium text-base text-gray-800 border-b-2 border-gray-100">
                             {user.name}
+                            {/*  */}
                         </div>
                     </div>
 

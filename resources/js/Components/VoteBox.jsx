@@ -1,13 +1,15 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BiSolidUpvote } from "react-icons/bi";
 import BuyVotesModal from "./votes/BuyVotesModal";
 import ToolTip from "./inputs/ToolTip";
+import ProgressBar from "./votes/ProgressBar";
 import axios from "axios";
 import toast from "react-hot-toast";
 
 const VoteBox = ({ post, user }) => {
     const [votes, setVotes] = useState(post?.votes?.length);
+    const [votesNeeded] = useState(10);
     const [showBuyVotesModal, setShowBuyVotesModal] = useState(false);
 
     const handleVote = async () => {
@@ -30,10 +32,6 @@ const VoteBox = ({ post, user }) => {
         }
     };
 
-    useEffect(() => {
-        setVotes(post?.votes?.length);
-    }, [post]);
-
     return (
         <div className="flex items-center">
             <button
@@ -48,7 +46,7 @@ const VoteBox = ({ post, user }) => {
                 </ToolTip>
             </button>
 
-            <div className="">{votes}</div>
+            <ProgressBar progress={(votes / votesNeeded) * 100} />
 
             <BuyVotesModal
                 show={showBuyVotesModal}
