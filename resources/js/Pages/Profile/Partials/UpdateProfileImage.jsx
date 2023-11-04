@@ -108,6 +108,7 @@ const UpdateProfileImage = ({ className = "" }) => {
                                     <p className="text-gray-400 text-center mt-10 text-sm leading-10">
                                         PNG, JPG, GIF <br />
                                         720P or higher <br />
+                                        Max size: 512MB
                                     </p>
                                     <p
                                         className="bg-gray-800 text-center mt-10 rounded text-white text-md

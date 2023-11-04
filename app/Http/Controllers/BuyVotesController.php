@@ -16,8 +16,6 @@ class BuyVotesController extends Controller
      */
     public function index(Request $request)
     {
-        logger($request->all());
-
         // For now, with no payment integration, validate the data is correct
         // If so, credit the user with the number of votes they purchased
 
@@ -31,8 +29,7 @@ class BuyVotesController extends Controller
 
             // Get the user
             $user = User::find($request->user_id);
-            logger($user);
-
+            
             // Get the number of votes they purchased
             $votes = $request->num_votes;
 

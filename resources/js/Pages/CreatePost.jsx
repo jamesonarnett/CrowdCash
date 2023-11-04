@@ -97,6 +97,8 @@ export default function CreatePost({ auth }) {
 
     useEffect(() => {
         if (asset) {
+            console.log(asset);
+
             setFormData({
                 ...formData,
                 filePath: asset?.filePath,
@@ -145,7 +147,7 @@ export default function CreatePost({ auth }) {
                                     <div className="flex lg:w-[260px] justify-center m-auto ">
                                         {asset ? (
                                             <div>
-                                                {asset.type?.includes(
+                                                {asset.mimeType?.includes(
                                                     "video",
                                                 ) ? (
                                                     <video
@@ -178,7 +180,7 @@ export default function CreatePost({ auth }) {
                                                         MP4, WebM, PNG, JPG, GIF{" "}
                                                         <br />
                                                         720P or higher <br />
-                                                        Less than 2GB
+                                                        Max size: 512MB
                                                     </p>
                                                     <p
                                                         className="bg-[#66C7F4] text-center mt-10 rounded text-black text-md
@@ -202,7 +204,7 @@ export default function CreatePost({ auth }) {
                                         className="text-center text-xl text-red-500
                                         font-semibold mt-4 w-[250px]"
                                     >
-                                        Please Select a video file
+                                        Please Select a proper file type
                                     </p>
                                 )}
                             </div>

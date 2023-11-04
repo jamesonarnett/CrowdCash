@@ -23,6 +23,11 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
     const confettiDiv = useRef(null);
 
     const addComment = async () => {
+        if (newComment.comment.trim() === "") {
+            toast.error("Comment cannot be empty!");
+            return;
+        }
+
         try {
             const response = await axios.post(`/api/comment`, newComment);
 
@@ -94,22 +99,26 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
                         <p className="text-xl font-semibold mb-3">
                             {post.title}
                         </p>
-                        <div className="mx-auto max-w-[500px] max-h-[500px] overflow-hidden">
+                        <div className="ounded-md w-full">
                             {post.file_type === "image" && (
-                                <img
-                                    src={post.file_path}
-                                    alt="post"
-                                    className="w-full h-full object-contain"
-                                />
+                                <div className="bg-black p-3 rounded-md">
+                                    <img
+                                        src={post.file_path}
+                                        alt="post"
+                                        className="max-h-[400px] w-full mx-auto object-contain"
+                                    />
+                                </div>
                             )}
 
-                            {post.fileType === "video" && (
-                                <video
-                                    src={post.file_path}
-                                    alt="post"
-                                    className="w-full h-full object-contain"
-                                    controls
-                                />
+                            {post.file_type === "video" && (
+                                <div className="bg-black p-3 rounded-md">
+                                    <video
+                                        src={post.file_path}
+                                        alt="post"
+                                        className="mx-auto h-full w-full object-contain"
+                                        controls
+                                    />
+                                </div>
                             )}
                         </div>
 
