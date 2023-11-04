@@ -28,6 +28,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "react-confetti": "^6.1.0",
         "react-hot-toast": "^2.4.1",
         "react-icons": "^4.11.0"
     }

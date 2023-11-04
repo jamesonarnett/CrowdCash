@@ -14,7 +14,7 @@ const Navbar = ({ user }) => {
     const [userVotes, setUserVotes] = useState(user?.votes_available);
 
     useEffect(() => {
-        console.log("vote change", user);
+        // console.log("vote change", user);
         setUserVotes(user?.votes_available);
     });
 

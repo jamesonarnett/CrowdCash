@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "@inertiajs/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import { AiFillEdit } from "react-icons/ai";
 import { FaCommentDots } from "react-icons/fa";
@@ -19,6 +19,8 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
         user_id: user?.id,
     });
     const [comments, setComments] = useState([]);
+
+    const confettiDiv = useRef(null);
 
     const addComment = async () => {
         try {
@@ -60,7 +62,6 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
     };
 
     useEffect(() => {
-        console.log("post", post);
         if (
             (window.location.pathname === "/posts" &&
                 user.id === post.user_id) ||
@@ -76,8 +77,8 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
             shadow-lg m-sm-1 mx-2 md:mx-0"
         >
             {post && (
-                <div className="p-2 bg-offWhite rounded-md">
-                    <div className="pr-3 flex">
+                <div ref={confettiDiv} className="p-2 bg-offWhite rounded-md">
+                    <div className="pr-3 flex mb-3">
                         <img
                             src={post.user.file_path ?? "/images/default.png"}
                             alt="user"
@@ -88,7 +89,6 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
                             {post.user?.name}
                         </p>
                     </div>
-                    <br />
 
                     <Link href={route("post.slug", { slug: post.slug })}>
                         <p className="text-xl font-semibold mb-3">
@@ -122,7 +122,11 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
 
             <div className="flex w-full mt-1">
                 <div className="w-full">
-                    <VoteBox post={post} user={user} />
+                    <VoteBox
+                        post={post}
+                        user={user}
+                        confettiDiv={confettiDiv}
+                    />
                 </div>
 
                 <div className="flex justify-end items-center">

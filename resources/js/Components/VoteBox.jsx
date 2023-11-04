@@ -7,12 +7,11 @@ import ProgressBar from "./votes/ProgressBar";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const VoteBox = ({ post, user }) => {
+const VoteBox = ({ post, user, confettiDiv }) => {
     const [votes, setVotes] = useState(post?.votes?.length);
     const [votesNeeded] = useState(10);
     const [showBuyVotesModal, setShowBuyVotesModal] = useState(false);
 
-    console.log(post);
     const handleVote = async () => {
         try {
             const response = await axios.post("/api/vote", {
@@ -53,7 +52,10 @@ const VoteBox = ({ post, user }) => {
                 </button>
             )}
 
-            <ProgressBar progress={(votes / votesNeeded) * 100} />
+            <ProgressBar
+                progress={(votes / votesNeeded) * 100}
+                confettiDiv={confettiDiv}
+            />
 
             <BuyVotesModal
                 show={showBuyVotesModal}
