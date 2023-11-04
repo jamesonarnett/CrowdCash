@@ -59,6 +59,7 @@ const CreditCardForm = ({ selectedButton, user, closeModal }) => {
 
         if (!selectedButton) {
             toast.error("Please select a number of votes");
+            setIsLoading(false);
             return;
         }
 
@@ -173,7 +174,7 @@ const CreditCardForm = ({ selectedButton, user, closeModal }) => {
                             />
                             {!isExpirationDateValid && (
                                 <p className="text-red-500 text-sm mt-2">
-                                    Invalid expiration date
+                                    Invalid expiration date (MM/YY)
                                 </p>
                             )}
                         </div>

@@ -24,16 +24,17 @@ class PostController extends Controller
                     ->get(),
             ]);
         } else {
+            $filteredPosts = Post::with('user', 'comments', 'votes')
+                ->withVotesCount()
+                ->orderBy('created_at', 'DESC')
+                ->published()
+                ->get()
+                ->filter(function ($post) {
+                    return $post->votes_count < $post->votes_to_goal;
+                });
+
             return response()->json([
-                'posts' => (Post::with('user')
-                    ->with('comments')
-                    ->with('votes')
-                    ->withVotesCount()
-                    ->orderBy('created_at', 'DESC')
-                    ->published()
-                    ->get())->filter(function ($post) {
-                        return $post->votes_count < $post->votes_to_goal;
-                    }),
+                'posts' => $filteredPosts->values(),
             ]);
         }
     }
