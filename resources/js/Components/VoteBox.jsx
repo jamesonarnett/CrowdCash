@@ -12,6 +12,7 @@ const VoteBox = ({ post, user }) => {
     const [votesNeeded] = useState(10);
     const [showBuyVotesModal, setShowBuyVotesModal] = useState(false);
 
+    console.log(post);
     const handleVote = async () => {
         try {
             const response = await axios.post("/api/vote", {
@@ -34,17 +35,23 @@ const VoteBox = ({ post, user }) => {
 
     return (
         <div className="flex items-center">
-            <button
-                className="text-white font-bold flex p-2 rounded"
-                onClick={handleVote}
-            >
-                <ToolTip text="Vote!">
-                    <BiSolidUpvote
-                        fill="#000000"
-                        className="hover:fill-primary text-xl"
-                    />
-                </ToolTip>
-            </button>
+            {votes >= votesNeeded ? (
+                <p className="text-lg font-semibold text-green-500 mr-5">
+                    Success!
+                </p>
+            ) : (
+                <button
+                    className="text-white font-bold flex p-2 rounded"
+                    onClick={handleVote}
+                >
+                    <ToolTip text="Vote!">
+                        <BiSolidUpvote
+                            fill="#000000"
+                            className="hover:fill-primary text-xl"
+                        />
+                    </ToolTip>
+                </button>
+            )}
 
             <ProgressBar progress={(votes / votesNeeded) * 100} />
 
