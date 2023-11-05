@@ -179,8 +179,6 @@ class PostController extends Controller
             if ($request->hasFile('file')) {
                 $file = $request->file('file');
 
-                logger($file);
-
                 // Generate a unique name for the file
                 $fileName = time().'_'.$file->getClientOriginalName();
 
@@ -213,7 +211,6 @@ class PostController extends Controller
                 ]);
             }
 
-            logger('success', ['filePath' => $filePath, 'mimeType' => $mimeType]);
             return response()->json([
                 'success' => true,
                 'message' => 'Media saved successfully!',

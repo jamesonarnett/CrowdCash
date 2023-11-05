@@ -99,19 +99,19 @@ const SinglePost = ({ post, user, deletePost, isPostOwner = false }) => {
                         <p className="text-xl font-semibold mb-3">
                             {post.title}
                         </p>
-                        <div className="ounded-md w-full">
+                        <div className="rounded-md w-full">
                             {post.file_type === "image" && (
-                                <div className="bg-black p-3 rounded-md">
+                                <div className="bg-black max-w-[650px] mx-auto p-3 rounded-md">
                                     <img
                                         src={post.file_path}
                                         alt="post"
-                                        className="max-h-[400px] w-full mx-auto object-contain"
+                                        className="max-h-[600px] mx-auto object-contain"
                                     />
                                 </div>
                             )}
 
                             {post.file_type === "video" && (
-                                <div className="bg-black p-3 rounded-md">
+                                <div className="bg-black max-w-[650px] mx-auto p-3 rounded-md">
                                     <video
                                         src={post.file_path}
                                         alt="post"

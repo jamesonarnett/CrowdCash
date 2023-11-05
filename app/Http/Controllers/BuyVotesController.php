@@ -29,7 +29,7 @@ class BuyVotesController extends Controller
 
             // Get the user
             $user = User::find($request->user_id);
-            
+
             // Get the number of votes they purchased
             $votes = $request->num_votes;
 
