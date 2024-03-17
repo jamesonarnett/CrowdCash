@@ -14,12 +14,11 @@ const Navbar = ({ user }) => {
     const [userVotes, setUserVotes] = useState(user?.votes_available);
 
     useEffect(() => {
-        // console.log("vote change", user);
         setUserVotes(user?.votes_available);
     });
 
     return (
-        <nav className="bg-white border-b border-gray-100">
+        <nav className="bg-tan fixed w-[100%] shadow-xl">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
                     <div className="flex">
@@ -91,7 +90,7 @@ const Navbar = ({ user }) => {
                                                 />
                                             </svg>
                                         </button>
-                                        <p className="text-gray-500 flex items-center text-sm">
+                                        <p className="text-gray-500 flex items-center text-sm ml-4">
                                             You have {userVotes} votes!
                                         </p>
                                     </span>

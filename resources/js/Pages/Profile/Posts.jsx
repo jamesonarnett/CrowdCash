@@ -59,7 +59,7 @@ const Posts = ({ auth }) => {
                     </h2>
                 </div>
 
-                <div className="mt-5">
+                <div className="mt-[75px]">
                     {posts.length > 0 ? (
                         posts.map((post) => (
                             <SinglePost

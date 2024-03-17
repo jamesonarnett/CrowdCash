@@ -5,7 +5,7 @@ import React from "react";
 // best because people do this kind of stuff.
 const SvgTrash = () => {
     return (
-        <div className="flex ">
+        <div className="flex align-center w-[100%] justify-between">
             {/* HOUSE ON FIRE */}
             <svg
                 version="1.0"

@@ -23,8 +23,8 @@ class BuyVotesController extends Controller
             // Validate the request
             $this->validateCC(
                 $request->card_number,
-                $request->cc_card_holder,
-                $request->cc_expiration_date,
+                $request->card_holder,
+                $request->expiration_date,
                 $request->cvv);
 
             // Get the user

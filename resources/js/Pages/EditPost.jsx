@@ -67,7 +67,7 @@ export default function EditPost({ auth, post }) {
             <Head title="Post" />
 
             <div className="py-4">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div className="mt-[75px] max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="flex flex-col w-100 justify-center my-10">
                         <h1 className="text-xl font-semibold mt-4 text-center">
                             Edit post text

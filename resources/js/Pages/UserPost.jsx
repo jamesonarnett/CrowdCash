@@ -45,7 +45,7 @@ const UserPost = ({ auth, post }) => {
             <Toast />
 
             <div className="py-4">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div className="mt-[75px] max-w-7xl mx-auto sm:px-6 lg:px-8">
                     {post ? (
                         <SinglePost
                             key={post.id}

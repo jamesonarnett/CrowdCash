@@ -32,10 +32,10 @@ export default function Welcome({ auth }) {
             <div className="max-h-screen bg-primary">
                 <div
                     ref={navRef}
-                    className={`p-3 text-right flex items-center justify-between fixed w-[100%] z-50
+                    className={`p-5 text-right flex items-center justify-between fixed w-[100%] z-50
                         ${
                             navBackground
-                                ? "bg-white shadow-md border-b-2 border-black"
+                                ? "bg-tan shadow-xl"
                                 : "bg-transparent"
                         }`}
                 >
@@ -43,7 +43,7 @@ export default function Welcome({ auth }) {
                         <div className="flex items-center">
                             <ApplicationLogo className="!max-w-12 !max-h-10" />
                         </div>
-                        <div className="flex my-5 md:m-0 text-2xl">
+                        <div className="flex mt-5 md:m-0 text-2xl">
                             {auth.user ? (
                                 <Link
                                     href={route("dashboard")}
@@ -72,7 +72,7 @@ export default function Welcome({ auth }) {
                     </div>
                 </div>
 
-                <div className="bg-orange flex flex-col">
+                <div className="bg-tan flex flex-col">
                     <div className="custom-shape-divider-top-1698887276">
                         <svg
                             data-name="Layer 1"
@@ -87,34 +87,43 @@ export default function Welcome({ auth }) {
                         </svg>
                     </div>
 
-                    <div className="w-full min-h-[200px] justify-center items-center bg-white">
-                        <div className="p-5 flex flex-col md:flex-row items-center justify-center text-center">
-                            <div className="p-5 flex flex-col justify-center items-center">
-                                <p className="text-center text-3xl font-semibold">
-                                    No matter the crisis
-                                    <br />
-                                    No matter the time
-                                    <br />
-                                    CrowdCash is here to help
+                    <div className="w-full min-h-[200px] justify-center items-center bg-tan">
+                        <div className="p-5 flex flex-col items-center justify-center text-center">
+                            <div className="p-5 flex flex-col md:flex-row justify-center items-center">
+                                <p className="text-5xl lg:text-6xl m-3 font-light mr-0 md:mr-12">
+                                    <span className="block my-6">
+                                        No matter
+                                    </span>
+                                    <span className="block my-6 -ml-6">
+                                        the crisis.
+                                    </span>
+
+                                    <span className="block my-6 -ml-1">
+                                        No matter
+                                    </span>
+                                    <span className="block my-6 -ml-8">
+                                        the time.
+                                    </span>
                                 </p>
-                                <SvgTrash />
+                                <div className="ml-0 md:ml-12 flex flex-col align-center">
+                                    <p className="text-3xl m-3 md:text-4xl">
+                                        CrowdCash is here to help
+                                    </p>
+                                    <SvgTrash />
+                                    <SubmitBtn
+                                        text="Make your first post now"
+                                        onSubmit={() => {
+                                            window.location.href =
+                                                route("register");
+                                        }}
+                                        className="mt-4 min-w-1/3 text-xl font-semibold whitespace-nowrap hover:bg-orange"
+                                    />
+                                </div>
                             </div>
-                            <p className="mt-10 md:mt-0 flex flex-col text-3xl font-semibold">
-                                Help others in their time of need with just a
-                                click!
-                                <SubmitBtn
-                                    text="Make your first post now"
-                                    onSubmit={() => {
-                                        window.location.href =
-                                            route("register");
-                                    }}
-                                    className="mt-4 min-w-1/3 text-xl font-semibold whitespace-nowrap hover:bg-orange"
-                                />
-                            </p>
                         </div>
                     </div>
 
-                    <section className="bg-primary px-8 min-h-1/2 text-black border-t-2 border-white">
+                    <section className="bg-primary px-8 min-h-1/2 text-black">
                         <h2 className="mt-6 text-3xl font-semibold mb-4 flex items-center">
                             How It Works
                             <VscWorkspaceUnknown
@@ -122,98 +131,85 @@ export default function Welcome({ auth }) {
                                 fill="#000000"
                             />
                         </h2>
-                        <div className="text-[18px] font-semibold">
-                            <div className="p-4 border-[2px] bg-white border-orange rounded-lg shadow-md shadow-orange mt-5">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                    Ut faucibus pulvinar elementum integer.
-                                    Tristique nulla aliquet enim tortor at
-                                    auctor urna nunc. Morbi non arcu risus quis
-                                    varius quam quisque id. Diam in arcu cursus
-                                    euismod quis. Sit amet aliquam id diam
-                                    maecenas ultricies mi. Id volutpat lacus
-                                    laoreet non curabitur. Ut diam quam nulla
-                                    porttitor massa id. Semper viverra nam
-                                    libero justo laoreet sit. Nam aliquam sem et
-                                    tortor consequat. Eleifend quam adipiscing
-                                    vitae proin sagittis nisl. Aliquet sagittis
-                                    id consectetur purus ut. Purus viverra
-                                    accumsan in nisl nisi. Urna neque viverra
-                                    justo nec ultrices dui. Nunc eget lorem
-                                    dolor sed viverra ipsum nunc aliquet
-                                    bibendum. Amet facilisis magna etiam tempor
-                                    orci eu lobortis elementum.
+                        <div className="text-[18px] mb-8 font-semibold flex flex-col md:flex-row">
+                            <div className="p-4 m-2 bg-tan rounded-lg shadow-md shadow-black my-5">
+                                <h3 className="text-2xl font-semibold mb-2">
+                                    Step 1
+                                </h3>
+                                <p className="font-light">
+                                    Vaporware portland tumblr tousled, taiyaki
+                                    yuccie subway tile beard gentrify swag
+                                    hoodie poutine chia. Fixie la croix
+                                    readymade salvia fanny pack. Cray
+                                    letterpress umami, narwhal selfies tumeric
+                                    chartreuse viral helvetica same banjo
+                                    chicharrones. Cold-pressed humblebrag
+                                    kickstarter, street art unicorn forage
+                                    affogato pok pok. Vaporware portland tumblr
+                                    tousled, taiyaki yuccie subway tile beard
+                                    gentrify swag hoodie poutine chia. Fixie la
+                                    croix readymade salvia fanny pack. Cray
+                                    letterpress umami, narwhal selfies tumeric
+                                    chartreuse viral helvetica same banjo
+                                    chicharrones. Cold-pressed humblebrag
+                                    kickstarter, street art unicorn forage
+                                    affogato pok pok.
                                 </p>
                             </div>
-                            <div className="p-4 border-[2px] bg-white border-orange rounded-lg shadow-md shadow-orange my-5">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                    Ut faucibus pulvinar elementum integer.
-                                    Tristique nulla aliquet enim tortor at
-                                    auctor urna nunc. Morbi non arcu risus quis
-                                    varius quam quisque id. Diam in arcu cursus
-                                    euismod quis. Sit amet aliquam id diam
-                                    maecenas ultricies mi. Id volutpat lacus
-                                    laoreet non curabitur. Ut diam quam nulla
-                                    porttitor massa id. Semper viverra nam
-                                    libero justo laoreet sit. Nam aliquam sem et
-                                    tortor consequat. Eleifend quam adipiscing
-                                    vitae proin sagittis nisl. Aliquet sagittis
-                                    id consectetur purus ut. Purus viverra
-                                    accumsan in nisl nisi. Urna neque viverra
-                                    justo nec ultrices dui. Nunc eget lorem
-                                    dolor sed viverra ipsum nunc aliquet
-                                    bibendum. Amet facilisis magna etiam tempor
-                                    orci eu lobortis elementum.
+                            <div className="p-4 m-2 bg-tan rounded-lg shadow-md shadow-black my-5">
+                                <h3 className="text-2xl font-semibold mb-2">
+                                    Step 2
+                                </h3>
+                                <p className="font-light">
+                                    Vaporware portland tumblr tousled, taiyaki
+                                    yuccie subway tile beard gentrify swag
+                                    hoodie poutine chia. Fixie la croix
+                                    readymade salvia fanny pack. Cray
+                                    letterpress umami, narwhal selfies tumeric
+                                    chartreuse viral helvetica same banjo
+                                    chicharrones. Cold-pressed humblebrag
+                                    kickstarter, street art unicorn forage
+                                    affogato pok pok. Vaporware portland tumblr
+                                    tousled, taiyaki yuccie subway tile beard
+                                    gentrify swag hoodie poutine chia. Fixie la
+                                    croix readymade salvia fanny pack. Cray
+                                    letterpress umami, narwhal selfies tumeric
+                                    chartreuse viral helvetica same banjo
+                                    chicharrones. Cold-pressed humblebrag
+                                    kickstarter, street art unicorn forage
+                                    affogato pok pok.
                                 </p>
                             </div>
-                            <div className="p-4 border-[2px] bg-white border-orange rounded-lg shadow-md shadow-orange my-5">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                    Ut faucibus pulvinar elementum integer.
-                                    Tristique nulla aliquet enim tortor at
-                                    auctor urna nunc. Morbi non arcu risus quis
-                                    varius quam quisque id. Diam in arcu cursus
-                                    euismod quis. Sit amet aliquam id diam
-                                    maecenas ultricies mi. Id volutpat lacus
-                                    laoreet non curabitur. Ut diam quam nulla
-                                    porttitor massa id. Semper viverra nam
-                                    libero justo laoreet sit. Nam aliquam sem et
-                                    tortor consequat. Eleifend quam adipiscing
-                                    vitae proin sagittis nisl. Aliquet sagittis
-                                    id consectetur purus ut. Purus viverra
-                                    accumsan in nisl nisi. Urna neque viverra
-                                    justo nec ultrices dui. Nunc eget lorem
-                                    dolor sed viverra ipsum nunc aliquet
-                                    bibendum. Amet facilisis magna etiam tempor
-                                    orci eu lobortis elementum.
+                            <div className="p-4 m-2 bg-tan rounded-lg shadow-md shadow-black my-5">
+                                <h3 className="text-2xl font-semibold mb-2">
+                                    Step 3
+                                </h3>
+                                <p className="font-light">
+                                    Vaporware portland tumblr tousled, taiyaki
+                                    yuccie subway tile beard gentrify swag
+                                    hoodie poutine chia. Fixie la croix
+                                    readymade salvia fanny pack. Cray
+                                    letterpress umami, narwhal selfies tumeric
+                                    chartreuse viral helvetica same banjo
+                                    chicharrones. Cold-pressed humblebrag
+                                    kickstarter, street art unicorn forage
+                                    affogato pok pok. Vaporware portland tumblr
+                                    tousled, taiyaki yuccie subway tile beard
+                                    gentrify swag hoodie poutine chia. Fixie la
+                                    croix readymade salvia fanny pack. Cray
+                                    letterpress umami, narwhal selfies tumeric
+                                    chartreuse viral helvetica same banjo
+                                    chicharrones. Cold-pressed humblebrag
+                                    kickstarter, street art unicorn forage
+                                    affogato pok pok.
                                 </p>
                             </div>
                         </div>
                     </section>
 
-                    <section
-                        className="p-8 text-center text-black"
-                        style={{
-                            background: `url(${SkyDollars})`,
-                            backgroundSize: "100% 100%",
-                            backgroundPosition: "center center",
-                            backgroundRepeat: "no-repeat",
-                        }}
-                    >
+                    <section className="p-8 text-center text-black">
                         <div className="w-full flex justify-center">
-                            <div
-                                className="font-bold p-5 rounded-lg w-full md:w-1/2 shadow-lg"
-                                style={{
-                                    backgroundColor: "rgba(255,183,77, .85)",
-                                }}
-                            >
+                            <div className="font-bold p-5 border-[2px] border-black rounded-lg w-full md:w-1/2 shadow-lg">
                                 <h1 className="text-4xl">
                                     Your Platform for Making a Difference
                                 </h1>

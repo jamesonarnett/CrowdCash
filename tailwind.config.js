@@ -13,23 +13,24 @@ export default {
     theme: {
         extend: {
             colors: {
-                primary: "#66C7F4",
+                primary: "#90aeb2",
                 offPrimary: "#60C0F1",
                 secondary: "#83F28F",
                 tertiary: "#6C8AE3",
                 quaternary: "#FF1053",
                 myWhite: "#FFFFFF", // meh, maybe not
                 offWhite: "#F0F0F0",
-                orange: "#FFB74D",
+                orange: "#dd8e75",
+                tan: "#eee6de",
             },
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
             },
             backgroundImage: (theme) => ({
                 "gradient-primary":
-                    "linear-gradient(180deg, #FFFFFF 30%, #66C7F4 100%)",
+                    "linear-gradient(180deg, #FFFFFF 30%, #90aeb2 100%)",
                 "gradient-primary-flip":
-                    "linear-gradient(0deg, #FFFFFF 0%, #66C7F4 100%)",
+                    "linear-gradient(0deg, #FFFFFF 0%, #90aeb2 100%)",
                 "gradient-landing":
                     "linear-gradient(180deg, #FFFFFF 0%, #6C6EA0 100%)",
             }),

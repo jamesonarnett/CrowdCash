@@ -119,7 +119,7 @@ export default function CreatePost({ auth }) {
             <Head title="Post" />
 
             <div className="py-4 flex justify-center align-center">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div className="mt-[75px] max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="flex flex-col md:flex-row w-100 justify-center my-10 bg-white p-5 rounded-md">
                         <div>
                             <div>
@@ -134,7 +134,7 @@ export default function CreatePost({ auth }) {
                                 className={`border-dashed rounded-xl 
                                     border-4 border-gray-200 flex flex-col justify-center 
                                     items-center outline-none mt-10 w-[350px] h-[460px] 
-                                    p-10 cursor-pointer hover:border-orange hover:bg-gray-100
+                                    p-10 cursor-pointer hover:border-tan hover:bg-gray-100
                                     ${
                                         isUploading
                                             ? "bg-gray-100 border-secondary custom-pulse"
