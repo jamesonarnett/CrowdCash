@@ -183,7 +183,7 @@ export default function CreatePost({ auth }) {
                                                         Max size: 512MB
                                                     </p>
                                                     <p
-                                                        className="bg-[#66C7F4] text-center mt-10 rounded text-black text-md
+                                                        className="bg-tan text-center mt-10 rounded text-black text-md
                                                         font-medium p-2  w-52 outline-none"
                                                     >
                                                         Select File
